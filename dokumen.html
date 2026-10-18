@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar Dokumen</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(180deg, #ffffff, #0099cc, #000033);
+      height: 100vh;
+      margin: hidden;
+    }
+
+    img { 
+	   display: block;
+	   width: 80px;
+   	   height: 60px;
+	   margin-left: auto;
+	   margin-right: auto;
+   	   margin-bottom: 0.5rem;
+	   justify-content: center;
+	   align-items: center;
+    }
+
+     h1 {
+         text-align: center;
+	 margin-bottom: 3rem;
+         text-shadow: 0 6px 4px rgba(0,0,0,0.3);
+     }
+
+    /* ===== Daftar Folder ===== */
+    .daftar-file {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      
+    }
+
+    .file-item {
+      width: calc(33.333% - 2rem);	
+      min-width: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .file-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .ikon-folder {
+      width: 60px;
+      height: auto;
+      margin-bottom: 0.6rem;
+    }
+
+    .nama-file {
+      font-size: 0.95rem;
+      color: #333;
+      text-align: center;
+    }
+
+    /* ===== Kotak Detail Muncul ===== */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+    }
+
+    .overlay.aktif {
+      display: flex;
+    }
+
+    .kotak-detail {
+      background: linear-gradient(180deg, #ffffff, #0099cc);
+      padding: 2rem;
+      border-radius:15px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .ikon-kertas {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    .kotak-detail h3 {
+      color: #333;
+      margin-bottom: 1.5rem;
+    }
+
+    .tombol-unduh {
+      display: inline-block;
+      background-color: #008000;
+      color: white;
+      padding: 0.6rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      margin-bottom: 0.8rem;
+      transition: background 0.2s;
+    }
+
+    .tombol-unduh:hover {
+      background-color: #2e8b57;
+    }
+    .tombol-tutup:hover {
+      background-color: #0000cd;
+    }
+
+    .tombol-tutup {
+      display: inline-block;
+      background-color: #000080;
+      border-radius: 6px;
+      text-decoration: none;
+      margin-top: 1rem;
+      color: #ffffff;
+      padding: 0.6rem 1.5rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      border: none;
+      width: 120px;
+      font-size: 16px;
+      
+    }
+
+	@media(max-width: 600px){
+	.file-item{
+	  width: calc(50% - 2rem);
+	  }
+	}
+  </style>
+</head>
+<body>
+  <div class="container">
+  <header>
+  <img src="folder1.png" alt="">
+  <h1>Dokumen (pdf)</h1>
+  <header>
+
+  <div class="daftar-file">
+   
+    <!-- Folder 1 -->
+    <div class="file-item" data-file="file pdf/Form HCP BPJS Reimbursement Generali.pdf" data-nama="">
+      <img src="folder1.png" alt="Folder" class="ikon-folder">
+      <span class="Form HCP BPJS Reimbursement Generali.pdf">Form Reimbursement Generali</span>
+    </div>
+
+    <!-- Folder 2 -->
+    <div class="file-item" data-file="file pdf/Form Kacamata.pdf" data-nama="">
+      <img src="folder1.png" alt="Folder" class="ikon-folder">
+      <span class="Form Kacamata.pdf">Form Kacamata</span>
+    </div>
+
+    <!-- Folder 3 -->
+    <div class="file-item" data-file="file pdf/Form Teman Sejawat.pdf" data-nama="">
+      <img src="folder1.png" alt="Folder" class="ikon-folder">
+      <span class="Form Teman Sejawat.pdf">Teman Sejawat</span>
+    </div>
+
+     <div class="file-item" data-file="file pdf/Reimbursement Form.pdf" data-nama="">
+      <img src="folder1.png" alt="Folder" class="ikon-folder">
+      <span class="Reimbursement Form.pdf">Reimbursement Generali</span>
+    </div>
+
+	<div class="file-item" data-file="file pdf/Surat Pernyataan Kacamata.pdf" data-nama="">
+      <img src="folder1.png" alt="Folder" class="ikon-folder">
+      <span class="Surat Pernyataan Kacamata.pdf">Surat Pernyataan Kacamata</span>
+    </div>
+
+	<div class="file-item" data-file="file pdf/Coretax (002).pdf" data-nama="">
+      <img src="folder1.png" alt="Folder" class="ikon-folder">
+      <span class="Coretax (002).pdf">Coretax (002)</span>
+    </div>
+
+	<div class="file-item" data-file="file pdf/Danone-IUF agreements 1988-2024.pdf" data-nama="">
+      <img src="folder1.png" alt="Folder" class="ikon-folder">
+      <span class="Danone-IUF agreements 1988-2024.pdf">Danone-IUF Agreements 1988-2024</span>
+    </div>
+
+    <!-- Tambah folder baru di sini -->
+
+  </div>
+
+  <!-- Kotak Detail yang Muncul -->
+  <div class="overlay" id="overlay">
+    <div class="kotak-detail">
+      <div class="ikon-kertas">📝</div>
+      <h3 id="judul-detail">Nama File</h3>
+      <a href="" id="link-unduh" download class="tombol-unduh">Download</a>
+      <br>
+      <button class="tombol-tutup" id="tombol-tutup">Cancel</button>
+    </div>
+  </div>
+
+<script>
+  // Ambil semua elemen
+  const semuaFolder = document.querySelectorAll('.file-item');
+  const overlay = document.getElementById('overlay');
+  const judulDetail = document.getElementById('judul-detail');
+  const linkUnduh = document.getElementById('link-unduh');
+  const tombolTutup = document.getElementById('tombol-tutup');
+
+  // Klik folder → munculkan detail
+  semuaFolder.forEach(folder => {
+    folder.addEventListener('click', function() {
+      const nama = this.getAttribute('data-nama');
+      const file = this.getAttribute('data-file');
+     
+      judulDetail.textContent = nama;
+      linkUnduh.href = file;
+      overlay.classList.add('aktif');
+    });
+  });
+
+  // Klik tombol tutup → sembunyikan
+  tombolTutup.addEventListener('click', function() {
+    overlay.classList.remove('aktif');
+  });
+
+  // Klik latar belakang gelap → tutup juga
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) {
+      overlay.classList.remove('aktif');
+    }
+  });
+</script>
+
+</body>
+</html>

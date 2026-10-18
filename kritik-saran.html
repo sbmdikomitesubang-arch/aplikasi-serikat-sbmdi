@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengaduan Anggota Serikat</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(180deg, #ffffff, #0099cc, #000033);
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+     img { 
+	   display: block;
+	   width: 80px;
+   	   height: 60px;
+	   margin-left: auto;
+	   margin-right: auto;
+   	   margin-bottom: 0.5rem;
+	   justify-content: center;
+	   align-items: center;
+    }
+
+    .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    h1 {
+    
+      align-items: center;
+      gap: 0.75rem;
+      text-align: center;
+      color: navy;
+      margin-bottom: 3rem;
+      font-size: 2rem;
+      text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-grup {
+      margin-bottom: 1.2rem;
+    }
+
+    label {
+      display: block;
+      color: #333333;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.85rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      color: #333333;
+      background-color: #eaf2f8;
+    }
+
+    input:focus, textarea:focus {
+      width: 100%;
+      padding: 0.85rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      color: #333333;
+      background-color: #eaf2f8;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .tombol-kirim {
+      display: block;
+      margin: 0 auto;
+      width: 50%;
+      padding: 1rem;
+      padding-top: 0.5rem;
+      background: linear-gradient(180deg, #00bfff, #000080);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      margin-top: 2rem;
+      width: 200px;
+      height: 40px;
+      
+    }
+
+    .tombol-kirim:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .tombol-kirim:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+        <header> 
+        <img src="gambar/logo sbmdi.png" alt="" class="">
+        <h1>Kritik & Saran</h1>
+        </header>
+    
+
+  
+    <form action="#" method="POST">
+      <!-- Nama Lengkap -->
+      <div class="form-grup">
+        <label for="nama">Nama Lengkap</label>
+        <input type="text" id="nama_lengkap" name="nama_lengkap" placeholder="Nama lengkap Anda" required>
+      </div>
+
+      <!-- NIK -->
+      <div class="form-grup">
+        <label for="nik">ID Share</label>
+        <input type="text" id="id_share" name="id_share" placeholder="Masukkan ID Share Anda" required>
+      </div>
+
+      <!-- Kritik -->
+      <div class="form-grup">
+        <label for="Kritik">Kritik</label>
+        <textarea id="kritik" name="kritik" placeholder="Masukkan Kritik Anda" required></textarea>
+      </div>
+
+      <!-- Saran -->
+      <div class="form-grup">
+        <label for="Saran">Saran</label>
+        <textarea id="saran" name="saran" placeholder="Masukkan Saran Anda" required></textarea>
+      </div>
+
+      <!-- Tombol Kirim -->
+      <button type="submit" class="tombol-kirim">Kirim</button>
+
+      <input type="hidden" name="jenis_form" value="kritiksaran">
+    </form>
+  </div>
+
+  <script>
+// === PAKAI LINK YANG SAMA DENGAN FORM PENGADUAN ===
+const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbznoRpjpmzxij9I6dqovoyz0KH2WPchihZXJ8kdsS_X_AZXvG0Vxk4nbsgcIKIESaq3/exec";
+// ====================================================
+
+const form = document.querySelector("form");
+
+form.addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector("button");
+  btn.disabled = true;
+  btn.textContent = "Mengirim...";
+
+  try {
+    const fd = new FormData(this);
+    const res = await fetch(URL_SCRIPT, { method: "POST", body: fd });
+    const hasil = await res.json();
+
+    if (hasil.status === "sukses") {
+      alert("Terima Kasih atas Kritik & Saran Anda.\n\n Salam Team Infokom SBMDI");
+      this.reset();
+    }
+  } catch (err) {
+    alert("Gagal: " + err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Kirim";
+  }
+});
+</script>
+</body>
+</html>
