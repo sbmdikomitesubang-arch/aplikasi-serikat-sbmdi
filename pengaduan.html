@@ -114,31 +114,31 @@
       display: block;
       margin: 0 auto;
       width: 50%;
-      padding: 1rem;
-      padding-top: 0.5rem;
       background: linear-gradient(180deg, #00bfff, #000080);
-      text-color: white;
-	  text-aligment: center;
-      border: none;
       border-radius: 8px;
+      color: #ffffff;
+      width: 200px;
+      height: 40px;
       font-size: 1rem;
       font-weight: 500;
       cursor: pointer;
-      transition: transform 0.2s ease, opacity 0.2s ease;
       margin-top: 2rem;
-      width: 200px;
-      height: 40px;
-	}
-
-	.tombol-kembali:hover {
+      text-align: center;
+      padding: 1rem;
+      padding-top: 0.5rem;
+      border: none;
+      text-decoration: none;
+       
+    }
+    
+      .tombol-kembali:hover {
       opacity: 0.9;
-      transform: translateY(-2px);
-	}
+      transform: translateX(-2px);
+    }
 
-	.tombol-kembali:active {
-	transform: translateY(0);
-	}
-		
+      .tombol-kembali:active {
+      transform: translateX(0);
+    }
   </style>
 </head>
 <body>
@@ -179,9 +179,8 @@
       <button type="submit" class="tombol-kirim">Kirim Pengaduan</button>
       <input type="hidden" name="jenis_form" value="pengaduan">
 
-	  <div class="tombol-kembali">
-		  <a href="index.html">Back</a>
-	  </div>
+	  <input type="hidden" name="jenis_form" value="pengaduan">
+      <a href="index.html" class="tombol-kembali">Back</a>
     </form>
   </div>
 
