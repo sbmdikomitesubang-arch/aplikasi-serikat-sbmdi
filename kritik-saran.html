@@ -113,6 +113,38 @@
     .tombol-kirim:active {
       transform: translateY(0);
     }
+
+    .tombol-kembali {
+      display: block;
+      margin: 0 auto;
+      width: 50%;
+      background: linear-gradient(180deg, #00bfff, #000080);
+      border-radius: 8px;
+      color: #ffffff;
+      width: 200px;
+      height: 40px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 2rem;
+      text-align: center;
+      padding: 1rem;
+      padding-top: 0.5rem;
+      border: none;
+      text-decoration: none;
+       
+    }
+    
+      .tombol-kembali:hover {
+      opacity: 0.9;
+      transform: translateX(-2px);
+    }
+
+      .tombol-kembali:active {
+      transform: translateX(0);
+    }
+
+		
   </style>
 </head>
 <body>
@@ -151,8 +183,11 @@
 
       <!-- Tombol Kirim -->
       <button type="submit" class="tombol-kirim">Kirim</button>
-
       <input type="hidden" name="jenis_form" value="kritiksaran">
+
+      <input type="hidden" name="jenis_form" value="pengaduan">
+      <a href="index.html" class="tombol-kembali">Back</a>
+		
     </form>
   </div>
 
