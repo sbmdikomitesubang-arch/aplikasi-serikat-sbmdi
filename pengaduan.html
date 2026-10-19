@@ -109,6 +109,35 @@
     .tombol-kirim:active {
       transform: translateY(0);
     }
+
+	.tombol-kembali {
+      display: block;
+      margin: 0 auto;
+      width: 50%;
+      padding: 1rem;
+      padding-top: 0.5rem;
+      background: linear-gradient(180deg, #00bfff, #000080);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      margin-top: 2rem;
+      width: 200px;
+      height: 40px;
+	}
+
+	.tombol-kembali:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+	}
+
+	.tombol-kembali:active {
+	transform: translateY(0);
+	}
+		
   </style>
 </head>
 <body>
@@ -147,8 +176,11 @@
 
       <!-- Tombol Kirim -->
       <button type="submit" class="tombol-kirim">Kirim Pengaduan</button>
-
       <input type="hidden" name="jenis_form" value="pengaduan">
+
+	  <div class="tombol-kembali">
+		  <a href="index.html">Back</a>
+	  </div>
     </form>
   </div>
 
@@ -180,8 +212,5 @@ document.querySelector("form").addEventListener("submit", async function(e) {
   }
 });
 </script>
-	<div class="tombol_kembali">
-	<a href="index.html">Back</a>
-	</div>
 </body>
 </html>
