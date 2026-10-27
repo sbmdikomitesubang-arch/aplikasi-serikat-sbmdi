@@ -310,7 +310,10 @@ form.addEventListener("submit", function(event) {
 
     if (hasil.status === "success") {
       tampilkanPesan("Login berhasil..", true);
-
+      
+    if (window.AppInventor && window.AppInventor.setWebViewString) {
+  window.AppInventor.setWebViewString("LOGIN_BERHASIL");
+  } 
       setTimeout(function() {
         window.location.href = LOADING_PAGE_URL;
       }, 700);
