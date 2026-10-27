@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Portal SBMDI</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom,  #4682B4 10%, #ffffff 90%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 16px;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: rgba(80, 190, 255, .16);
+  filter: blur(3px);
+  pointer-events: none;
+}
+
+body::before {
+  top: -150px;
+  right: -100px;
+}
+
+body::after {
+  bottom: -180px;
+  left: -100px;
+}
+
+.container {
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  z-index: 1;
+}
+
+
+
+.header h1 {
+  font-size: clamp(27px, 7vw, 36px);
+  letter-spacing: 1px;
+  margin-bottom: 9px;
+}
+
+.header p {
+  font-size: 15px;
+  color: #e1f2ff;
+  line-height: 1.6;
+}
+
+.header .motto {
+  margin-top: 8px;
+  font-size: 13px;
+  font-style: italic;
+  color: #bce9ff;
+}
+
+.card {
+  background: rgba(255, 255, 255, .97);
+  border-radius: 25px;
+  overflow: hidden;
+  border: 1px solid #c7e2ff;
+  box-shadow: 0 20px 55px #001d4d50;
+}
+
+.card-header {
+  background: linear-gradient(120deg, #06357d, #087ff1);
+  color: white;
+  padding: 25px 24px;
+  text-align: center;
+}
+
+.card-header h2 {
+  font-size: 23px;
+  margin-bottom: 9px;
+}
+
+.card-header p {
+  font-size: 14px;
+  color: #e2f1ff;
+  line-height: 1.6;
+}
+
+form {
+  padding: 27px 24px 24px;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #173b6b;
+  margin-bottom: 9px;
+}
+
+.input-wrap {
+  display: flex;
+  align-items: center;
+  border: 2px solid #d6e8ff;
+  border-radius: 13px;
+  background: #dbeafe;
+  transition: .25s;
+}
+
+.input-wrap:focus-within {
+  border-color: #1686f9;
+  background: white;
+  box-shadow: 0 0 0 4px #1686f91a;
+}
+
+
+
+input {
+  width: 100%;
+  min-width: 0;
+  padding: 16px 12px 16px 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+  color: #18365d;
+  padding-left: 15px;
+}
+
+input::placeholder {
+  color: #91a4bd;
+}
+
+button {
+  width: 100%;
+  padding: 17px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #20b8ff, #0872ee 55%, #0647c7);
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 7px 0 #063a9a, 0 13px 25px #0875ed40;
+  transition: transform .15s, box-shadow .15s;
+  margin-top: 5px;
+}
+
+button:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(5px);
+  box-shadow: 0 2px 0 #063a9a;
+}
+
+button:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+
+#pesan {
+  display: none;
+  padding: 12px;
+  margin-top: 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.footer {
+  text-align: center;
+  color: gray;
+  font-size: 12px;
+  margin-top: 24px;
+  line-height: 1.8;
+}
+
+@media (max-width: 380px) {
+  form {
+    padding: 22px 17px;
+  }
+
+  .card-header {
+    padding: 22px 16px;
+  }
+
+  .logo {
+    width: 78px;
+    height: 78px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  
+
+  <main class="card">
+    <div class="card-header">
+      <h2>LOGIN ANGGOTA</h2>
+      <p>Silakan masuk menggunakan ID Share Anda.</p>
+    </div>
+
+    <form id="formLogin">
+      <div class="field">
+        <label for="nama">Nama Lengkap</label>
+        <div class="input-wrap">
+          
+          <input
+            type="text"
+            id="nama"
+            placeholder="Masukkan Nama Lengkap"
+            autocomplete="name"
+            required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="idShare">ID Share</label>
+        <div class="input-wrap">
+          
+          <input
+            type="text"
+            id="idShare"
+            placeholder="Masukkan ID Share"
+            autocomplete="off"
+            required>
+        </div>
+      </div>
+
+      <button type="submit" id="btnMasuk">
+        ➜ &nbsp; MASUK
+      </button>
+
+      <div id="pesan" role="status" aria-live="polite"></div>
+
+    </form>
+  </main>
+
+  <footer class="footer">
+    &copy 2026 SBMDI Komite Subang All Right Reserved
+  </footer>
+
+</div>
+
+
+<script>
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyWhCXJvf7OWFFh4z90PhoksoY7LnWBKn9ff9Q4T9kHH9ME0BVSWiOlecjZCLyKkoSG/exec";
+const LOADING_PAGE_URL = "loading.html";
+
+const form = document.getElementById("formLogin");
+const tombol = document.getElementById("btnMasuk");
+const pesan = document.getElementById("pesan");
+
+function tampilkanPesan(teks, berhasil = false) {
+  pesan.style.display = "block";
+  pesan.style.background = berhasil ? "#dcfce7" : "#fee2e2";
+  pesan.style.color = berhasil ? "#166534" : "#991b1b";
+  pesan.textContent = teks;
+}
+
+form.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const nama = document.getElementById("nama").value.trim();
+  const idShare = document.getElementById("idShare").value.trim();
+
+  if (!nama || !idShare) {
+    tampilkanPesan("Nama Lengkap dan ID Share wajib diisi.");
+    return;
+  }
+
+  tombol.disabled = true;
+  tombol.textContent = "MEMERIKSA DATA...";
+  pesan.style.display = "none";
+
+  const callbackName = "hasilLoginSBMDI";
+
+  window[callbackName] = function(hasil) {
+    clearTimeout(batasWaktu);
+    delete window[callbackName];
+    script.remove();
+
+    if (hasil.status === "success") {
+      tampilkanPesan("Login berhasil..", true);
+
+      setTimeout(function() {
+        window.location.href = LOADING_PAGE_URL;
+      }, 700);
+    } else {
+      tampilkanPesan(hasil.message || "Nama atau ID Share tidak cocok.");
+      tombol.disabled = false;
+      tombol.textContent = "➜ MASUK";
+    }
+  };
+
+  const script = document.createElement("script");
+  const parameter = new URLSearchParams({
+    nama: nama,
+    idShare: idShare,
+    callback: callbackName
+  });
+
+  script.src = APPS_SCRIPT_URL + "?" + parameter.toString();
+
+  script.onerror = function() {
+    clearTimeout(batasWaktu);
+    delete window[callbackName];
+    script.remove();
+
+    tampilkanPesan("Gagal menghubungi server. Periksa deployment Apps Script.");
+    tombol.disabled = false;
+    tombol.textContent = "➜ MASUK";
+  };
+
+  const batasWaktu = setTimeout(function() {
+    delete window[callbackName];
+    script.remove();
+
+    tampilkanPesan("Server terlalu lama merespons. Silakan coba lagi.");
+    tombol.disabled = false;
+    tombol.textContent = "➜ MASUK";
+  }, 15000);
+
+  document.body.appendChild(script);
+});
+</script>
+
+</body>
+</html>
