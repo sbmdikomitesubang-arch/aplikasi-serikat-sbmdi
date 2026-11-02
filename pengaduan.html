@@ -140,6 +140,85 @@
       .tombol-kembali:active {
       transform: translateX(0);
     }
+
+     
+/* DIALOG SUKSES PORTAL SBMDI */
+.modal-sukses {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 20, 55, 0.65);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 340px;
+  box-sizing: border-box;
+  background: linear-gradient(to bottom, #eaf5ff, #ffffff);
+  border-radius: 22px;
+  padding: 30px 22px;
+  text-align: center;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  animation: muncul 0.3s ease;
+}
+
+.ikon-sukses {
+  width: 65px;
+  height: 65px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #20b8ff, #0755c9);
+  color: white;
+  font-size: 40px;
+  line-height: 65px;
+  font-weight: bold;
+}
+
+.modal-box h2 {
+  color: #0755a5;
+  margin: 10px 0;
+}
+
+.modal-box p {
+  color: #45566b;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.salam {
+  color: #0755a5;
+  font-weight: bold;
+  margin: 18px 0;
+}
+
+.modal-box button {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #20b8ff, #0755c9);
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+@keyframes muncul {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+	  
   </style>
 </head>
 <body>
@@ -185,6 +264,27 @@
     </form>
   </div>
 
+	<div id="dialogSukses" class="modal-sukses">
+  <div class="modal-box">
+    <div class="ikon-sukses">✓</div>
+
+    <h2>Terima Kasih!</h2>
+
+    <p>
+      Pengaduan Anda berhasil dikirim.
+      Pengaduan akan segera kami tindak lanjuti.
+    </p>
+
+    <div class="salam">
+      Salam Team Infokom SBMDI
+    </div>
+
+    <button onclick="tutupDialog()">
+      TUTUP
+    </button>
+  </div>
+</div>
+
 <script>
 // === GANTI DENGAN URL BARU DARI BAGIAN 1 DI ATAS ===
 const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbznoRpjpmzxij9I6dqovoyz0KH2WPchihZXJ8kdsS_X_AZXvG0Vxk4nbsgcIKIESaq3/exec";
@@ -202,9 +302,9 @@ document.querySelector("form").addEventListener("submit", async function(e) {
     const hasil = await res.json();
 
     if (hasil.status === "sukses") {
-      alert("Terima Kasih, Pengaduan Anda Akan Segera Kami Tindak Lanjuti.\n\n Salam Team Infokom SBMDI");
-      this.reset();
-    }
+  tampilkanDialog();
+  this.reset();
+  }
   } catch (err) {
     alert("Gagal: " + err.message);
   } finally {
