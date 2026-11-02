@@ -192,30 +192,60 @@
     </form>
   </div>
 
+    <div id="dialogSukses" class="modal-sukses">
+  <div class="modal-box">
+    <div class="ikon-sukses">✓</div>
+    <h2>Terima Kasih!</h2>
+    <p>
+      Kritik dan saran Anda berhasil dikirim.
+      Masukan Anda sangat berarti bagi kami.
+    </p>
+    <div class="salam">Salam Team Infokom SBMDI</div>
+    <button onclick="tutupDialog()">TUTUP</button>
+  </div>
+</div>
+	
   <script>
 // === PAKAI LINK YANG SAMA DENGAN FORM PENGADUAN ===
+
 const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbznoRpjpmzxij9I6dqovoyz0KH2WPchihZXJ8kdsS_X_AZXvG0Vxk4nbsgcIKIESaq3/exec";
-// ====================================================
+
+function tampilkanDialog() {
+  document.getElementById("dialogSukses").style.display = "flex";
+}
+
+function tutupDialog() {
+  document.getElementById("dialogSukses").style.display = "none";
+}
 
 const form = document.querySelector("form");
 
 form.addEventListener("submit", async function(e) {
   e.preventDefault();
+
   const btn = this.querySelector("button");
   btn.disabled = true;
   btn.textContent = "Mengirim...";
 
   try {
     const fd = new FormData(this);
-    const res = await fetch(URL_SCRIPT, { method: "POST", body: fd });
+    const res = await fetch(URL_SCRIPT, {
+      method: "POST",
+      body: fd
+    });
+
     const hasil = await res.json();
 
     if (hasil.status === "sukses") {
-      alert("Terima Kasih atas Kritik & Saran Anda.\n\n Salam Team Infokom SBMDI");
+      tampilkanDialog();
       this.reset();
+    } else {
+      alert("Gagal: " + (hasil.pesan || "Data tidak berhasil dikirim."));
     }
+
   } catch (err) {
     alert("Gagal: " + err.message);
+
   } finally {
     btn.disabled = false;
     btn.textContent = "Kirim";
