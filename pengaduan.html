@@ -289,7 +289,13 @@
 // === GANTI DENGAN URL BARU DARI BAGIAN 1 DI ATAS ===
 const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbznoRpjpmzxij9I6dqovoyz0KH2WPchihZXJ8kdsS_X_AZXvG0Vxk4nbsgcIKIESaq3/exec";
 // ====================================================
+function tampilkanDialog() {
+  document.getElementById("dialogSukses").style.display = "flex";
+}
 
+function tutupDialog() {
+  document.getElementById("dialogSukses").style.display = "none";
+}
 document.querySelector("form").addEventListener("submit", async function(e) {
   e.preventDefault();
   const btn = this.querySelector("button[type='submit']");
@@ -313,5 +319,7 @@ document.querySelector("form").addEventListener("submit", async function(e) {
   }
 });
 </script>
+
+	<div id="dialogSukses" class="modal-sukses">	
 </body>
 </html>
