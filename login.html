@@ -216,18 +216,26 @@ document.getElementById("btn-login").addEventListener("click", function() {
   const callbackName = "hasilLoginSBMDI";
 
   window[callbackName] = function(hasil) {
-    tampilkanPesan(
-      hasil.message,
-      hasil.status === "success"
-    );
 
-    tombol.disabled = false;
-    tombol.textContent = "MASUK";
+    if (hasil.status === "success") {
+      tampilkanPesan("Login Berhasil", true);
+
+      tombol.textContent = "BERHASIL";
+
+      setTimeout(function() {
+        window.location.href = "loading.html";
+      }, 700);
+
+    } else {
+      tampilkanPesan(hasil.message, false);
+
+      tombol.disabled = false;
+      tombol.textContent = "MASUK";
+    }
 
     delete window[callbackName];
     document.getElementById("script-login").remove();
   };
-
   const script = document.createElement("script");
   script.id = "script-login";
 
