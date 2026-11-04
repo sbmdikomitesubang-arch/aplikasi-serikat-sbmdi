@@ -422,7 +422,7 @@ body {
       <span class="close-modal" onclick="closeUpload()">&times;</span>
     </div>
 
-    <form id="uploadForm">
+    <form id="uploadForm" novalidate>
 
       <div class="form-group">
         <label>Pilih Foto</label>
@@ -681,8 +681,12 @@ document.getElementById("uploadForm")
   const file = document.getElementById("photoInput").files[0];
   const button = document.getElementById("submitButton");
 
-  if (!file) {
-    alert("Pilih foto terlebih dahulu.");
+  const nama = document.getElementById("activityName").value.trim();
+  const tanggal = document.getElementById("activityDate").value;
+  const kode = document.getElementById("accessCode").value.trim();
+
+  if (!file || !nama || !tanggal || !kode) {
+    alert("Lengkapi foto, nama kegiatan, tanggal, dan kode akses.");
     return;
   }
 
@@ -694,19 +698,19 @@ document.getElementById("uploadForm")
       const reader = new FileReader();
 
       reader.onload = () => resolve(reader.result);
-      reader.onerror = () => reject(new Error("Gagal membaca foto"));
+      reader.onerror = () => reject(new Error("Gagal membaca foto."));
 
       reader.readAsDataURL(file);
     });
 
     const payload = {
-     fileName: file.name,
-     mimeType: file.type || "image/jpeg",
-     photo: photo,
-     namaKegiatan: document.getElementById("activityName").value,
-     tanggalKegiatan: document.getElementById("activityDate").value,
-     keterangan: document.getElementById("description").value,
-     kodeAkses: document.getElementById("accessCode").value
+      fileName: file.name,
+      mimeType: file.type || "image/jpeg",
+      photo: photo,
+      namaKegiatan: nama,
+      tanggalKegiatan: tanggal,
+      keterangan: document.getElementById("description").value,
+      kodeAkses: kode
     };
 
     const response = await fetch(URL_SCRIPT, {
@@ -717,28 +721,27 @@ document.getElementById("uploadForm")
     const result = await response.json();
 
     if (result.status !== "success") {
-      throw new Error(result.message || "Upload gagal");
+      throw new Error(result.message || "Upload gagal.");
     }
 
-    alert("Foto berhasil diunggah dan dicatat!");
+    alert("Foto berhasil diunggah!");
 
     document.getElementById("uploadForm").reset();
     document.getElementById("preview").style.display = "none";
 
     closeUpload();
-
     await loadGallery();
 
   } catch (error) {
     console.error("Upload error:", error);
-    alert("Gagal: " + error.message);
+    alert("Upload gagal: " + error.message);
 
   } finally {
     button.disabled = false;
     button.textContent = "Upload Foto";
   }
 });
-
+	
    // FUNGSI HAPUS FOTO
 async function hapusFoto(idFoto) {
   const konfirmasi = confirm(
