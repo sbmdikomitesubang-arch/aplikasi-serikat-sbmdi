@@ -272,14 +272,24 @@ body {
 }
 
 .file-box label {
-  color: #0874c6;
+  display: inline-block;
+  color: white;
+  background: #0874c6;
+  padding: 11px 20px;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .file-box input {
-  display: none;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
 }
-
 .file-preview {
   display: none;
   width: 100%;
@@ -364,7 +374,7 @@ body {
   <div class="header-top">
     <img
       class="header-logo"
-      src="gambar/sbmdi12.png"
+      src="gambar/sbmdi3.png"
       alt="Logo SBMDI"
     >
 
@@ -383,7 +393,7 @@ body {
 <main class="container">
 
   <div class="section-heading">
-    <h2>Dokumentasi Kegiatan</h2>
+    <h2>Informasi Update & Dokumentasi Kegiatan</h2>
     <span id="photoCount">0 Foto</span>
   </div>
 
