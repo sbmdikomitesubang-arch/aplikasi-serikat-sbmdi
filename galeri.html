@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0756a5">
+<title>Galeri - SBMDI Komite Subang</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(180deg, #eaf5ff, #ffffff 45%);
+  color: #183653;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header {
+  background: linear-gradient(
+    180deg,
+    #000080,
+    #0756a5,
+    #87ceeb
+  );
+  color: white;
+  padding: 28px 20px 35px;
+  border-radius: 0 0 25px 25px;
+  box-shadow: 0 5px 18px rgba(0, 70, 140, 0.18);
+}
+
+.header-top {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+}
+
+.header-logo {
+  display: block !important;
+  width: 70px !important;
+  height: 70px !important;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.header-title {
+  display: block !important;
+  text-align: left;
+}
+
+.header-desc {
+  margin-top: 22px;
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+/* CONTENT */
+.container {
+  max-width: 850px;
+  margin: auto;
+  padding: 22px 16px 40px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.section-heading h2 {
+  font-size: 19px;
+  color: #124d82;
+}
+
+.section-heading span {
+  font-size: 12px;
+  color: #7290a9;
+}
+
+/* BUTTON */
+.upload-button {
+  width: 15%;
+  height: 7%;
+  padding: 15px;
+  border: none;
+  border-radius: 13px;
+  background: linear-gradient(180deg, #000080, #0756a5, #87ceeb);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0,90,170,.18);
+  margin: 0 0 20px;
+  align-items: center;
+}
+
+.upload-button:active {
+  transform: scale(.98);
+}
+
+/* GALLERY */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.photo-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(20,75,120,.09);
+  cursor: pointer;
+}
+
+.photo-card img {
+  display: block;
+  width: 100%;
+  height: 145px;
+  object-fit: cover;
+  background: #e5eff8;
+}
+
+.photo-info {
+  padding: 11px;
+}
+
+.photo-info h3 {
+  font-size: 13px;
+  color: #174e7c;
+  margin-bottom: 6px;
+}
+
+.photo-info p {
+  font-size: 11px;
+  color: #8196a9;
+  line-height: 1.5;
+}
+
+/* EMPTY STATE */
+.empty-state {
+  display: none;
+  padding: 35px 15px;
+  text-align: center;
+  color: #7892a9;
+  background: white;
+  border-radius: 15px;
+  grid-column: 1 / -1;
+}
+
+.empty-state div {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+
+/* LIGHTBOX */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: rgba(0,15,35,.94);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.close-lightbox {
+  position: absolute;
+  top: 20px;
+  right: 22px;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+/* UPLOAD MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: rgba(0,25,55,.65);
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.modal-content {
+  background: white;
+  width: 100%;
+  max-width: 430px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 20px;
+  padding: 22px;
+}
+
+.modal-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-title h2 {
+  font-size: 19px;
+  color: #0756a5;
+}
+
+.close-modal {
+  font-size: 27px;
+  color: #8095a9;
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 7px;
+  color: #31516e;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d5e3ef;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #168fe0;
+}
+
+.form-group textarea {
+  height: 85px;
+  resize: vertical;
+}
+
+.file-box {
+  border: 2px dashed #9cc7e8;
+  border-radius: 13px;
+  padding: 18px;
+  text-align: center;
+  background: #f3f9ff;
+}
+
+.file-box label {
+  color: #0874c6;
+  cursor: pointer;
+}
+
+.file-box input {
+  display: none;
+}
+
+.file-preview {
+  display: none;
+  width: 100%;
+  max-height: 190px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 12px;
+}
+
+.submit-button {
+  width: 100%;
+  border: none;
+  border-radius: 11px;
+  padding: 14px;
+  background: linear-gradient(135deg, #168fe0, #0756a5);
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.submit-button:disabled {
+  opacity: .6;
+}
+
+.note {
+  text-align: center;
+  color: #91a4b5;
+  font-size: 11px;
+  margin-top: 25px;
+}
+
+  
+/* NAVIGASI HALAMAN */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 25px;
+}
+
+.pagination button {
+  min-width: 38px;
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid #c8dff2;
+  border-radius: 9px;
+  background: white;
+  color: #0756a5;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background: linear-gradient(135deg, #168fe0, #0756a5);
+  color: white;
+  border-color: #0756a5;
+}
+
+.pagination button:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+@media (min-width: 600px) {
+  .gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .photo-card img {
+    height: 180px;
+  }
+}
+</style>
+</head>
+
+<body>
+<header class="header">
+  <div class="header-top">
+    <img
+      class="header-logo"
+      src="gambar/sbmdi12.png"
+      alt="Logo SBMDI"
+    >
+
+    <div class="header-title">
+      <h1>GALERI KEGIATAN</h1>
+      <p>SBMDI KOMITE SUBANG</p>
+    </div>
+  </div>
+
+  <div class="header-desc">
+    Dokumentasi kegiatan, kebersamaan, dan perjuangan
+    keluarga besar SBMDI Komite Subang.
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="section-heading">
+    <h2>Dokumentasi Kegiatan</h2>
+    <span id="photoCount">0 Foto</span>
+  </div>
+
+  <button type="button" class="upload-button" onclick="openUpload()">
+    ＋ Upload Foto
+  </button>
+
+  <div class="gallery" id="gallery">
+
+    <div class="empty-state" id="emptyState">
+      <div>🖼️</div>
+      <h3>Belum Ada Foto</h3>
+      <p>Dokumentasi kegiatan akan tampil di halaman ini.</p>
+    </div>
+
+  </div>
+
+    <!--NAVIGASI HALAMAN FOTO -->
+    <div id="pagination" class="pagination"></div>
+
+  <p class="note">
+    © SBMDI Komite Subang
+  </p>
+
+</main>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="close-lightbox">&times;</span>
+  <img id="largeImage" src="" alt="Foto kegiatan">
+</div>
+
+<!-- FORM UPLOAD -->
+<div class="modal" id="uploadModal">
+  <div class="modal-content">
+
+    <div class="modal-title">
+      <h2>Upload Foto Kegiatan</h2>
+      <span class="close-modal" onclick="closeUpload()">&times;</span>
+    </div>
+
+    <form id="uploadForm" novalidate>
+
+      <div class="form-group">
+        <label>Pilih Foto</label>
+        <div class="file-box">
+          <label for="photoInput">
+           Pilih File Foto
+          </label>
+          <input type="file" id="photoInput"
+                 accept="image/*" required>
+          <img id="preview" class="file-preview" alt="Preview foto">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Nama Kegiatan</label>
+        <input type="text" id="activityName"
+               placeholder="Contoh: Rapat Koordinasi" required>
+      </div>
+
+      <div class="form-group">
+  <label>Tanggal Kegiatan</label>
+  <input
+    type="text"
+    id="activityDate"
+    placeholder="dd/mm/yyyy"
+    required
+    readonly
+  >
+</div>
+
+      <div class="form-group">
+        <label>Keterangan</label>
+        <textarea id="description"
+          placeholder="Tuliskan keterangan kegiatan..."></textarea>
+      </div>
+
+      <div class="form-group">
+  	<label>Kode Akses</label>
+ 	<input type="password" id="accessCode" placeholder="Masukkan kode akses"required>
+	</div>
+
+      <button type="submit" class="submit-button" id="submitButton">
+        Upload Foto
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script>
+
+
+flatpickr("#activityDate", {
+  dateFormat: "d/m/Y",
+  defaultDate: new Date(),
+  allowInput: false
+});
+
+// URL WEB APP APPS SCRIPT
+const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbzDGYtY5yc5y0fsI6WjL3CovU5YIlhBjT8zqNdpqsij2fZtrkVRPHI8iH6Aen0A774r/exec";
+
+// DATA GALERI
+let photos = [];
+let currentPage = 1;
+const photosPerPage = 10;
+
+const gallery = document.getElementById("gallery");
+const emptyState = document.getElementById("emptyState");
+
+// FORMAT TANGGAL
+function formatDate(value) {
+  if (!value) return "";
+
+  let date;
+
+  // Jika hanya format YYYY-MM-DD
+  if (/^\d{4}-\d{2}-\d{2}$/.test(String(value))) {
+    const [tahun, bulan, hari] = String(value).split("-");
+    return hari + "/" + bulan + "/" + tahun;
+  }
+
+  // Jika berupa tanggal dengan waktu
+  date = new Date(value);
+
+  if (isNaN(date.getTime())) return value;
+
+  const hari = String(date.getDate()).padStart(2, "0");
+  const bulan = String(date.getMonth() + 1).padStart(2, "0");
+  const tahun = date.getFullYear();
+
+  return hari + "/" + bulan + "/" + tahun;
+}
+
+// TAMPILKAN FOTO
+
+function renderGallery() {
+  gallery.querySelectorAll(".photo-card")
+    .forEach(el => el.remove());
+
+  const totalPages = Math.ceil(photos.length / photosPerPage);
+
+  if (currentPage > totalPages) {
+    currentPage = Math.max(1, totalPages);
+  }
+
+  emptyState.style.display =
+    photos.length ? "none" : "block";
+
+  // Ambil maksimal 10 foto sesuai halaman
+  const startIndex = (currentPage - 1) * photosPerPage;
+  const endIndex = startIndex + photosPerPage;
+
+  const pagePhotos = photos.slice(startIndex, endIndex);
+
+  pagePhotos.forEach(photo => {
+    const card = document.createElement("div");
+    card.className = "photo-card";
+
+    const img = document.createElement("img");
+    img.src = photo.src;
+    img.alt = photo.name;
+    img.loading = "lazy";
+    img.onclick = () => showImage(photo.src);
+
+    const info = document.createElement("div");
+    info.className = "photo-info";
+
+    const title = document.createElement("h3");
+    title.textContent = photo.name;
+
+    const date = document.createElement("p");
+    date.textContent = photo.date;
+
+    const desc = document.createElement("p");
+    desc.textContent = photo.description || "";
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Hapus Foto";
+    deleteButton.type = "button";
+    deleteButton.style.cssText =
+      "width:100%;margin-top:10px;padding:9px;border:0;border-radius:8px;background:#dc3545;color:white;font-weight:bold;cursor:pointer;";
+
+    deleteButton.onclick = function(e) {
+      e.stopPropagation();
+      hapusFoto(photo.idFoto);
+    };
+
+    info.append(title, date, desc, deleteButton);
+    card.append(img, info);
+
+    gallery.appendChild(card);
+  });
+
+  // Jumlah seluruh foto
+  document.getElementById("photoCount").textContent =
+    photos.length + " Foto";
+
+  // Buat navigasi halaman
+  renderPagination(totalPages);
+}
+
+
+// MEMBUAT NAVIGASI HALAMAN (nomor dibatasi agar tetap ringan)
+function renderPagination(totalPages) {
+  const pagination = document.getElementById("pagination");
+  pagination.innerHTML = "";
+  if (totalPages <= 1) return;
+
+  function buatTombol(teks, halaman, aktif = false, disabled = false) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = teks;
+    button.disabled = disabled;
+    if (aktif) button.classList.add("active");
+    button.onclick = () => {
+      currentPage = halaman;
+      renderGallery();
+      window.scrollTo({
+        top: document.querySelector(".section-heading").offsetTop - 15,
+        behavior: "smooth"
+      });
+    };
+    pagination.appendChild(button);
+  }
+
+  buatTombol("‹", currentPage - 1, false, currentPage === 1);
+  // Tampilkan nomor sekitar halaman aktif, bukan ribuan tombol sekaligus
+  const first = Math.max(1, currentPage - 2);
+  const last = Math.min(totalPages, currentPage + 2);
+  if (first > 1) {
+    buatTombol(1, 1, currentPage === 1);
+    if (first > 2) {
+      const dots = document.createElement("span");
+      dots.textContent = "…";
+      dots.style.padding = "0 4px";
+      pagination.appendChild(dots);
+    }
+  }
+  for (let i = first; i <= last; i++) buatTombol(i, i, i === currentPage);
+  if (last < totalPages) {
+    if (last < totalPages - 1) {
+      const dots = document.createElement("span");
+      dots.textContent = "…";
+      dots.style.padding = "0 4px";
+      pagination.appendChild(dots);
+    }
+    buatTombol(totalPages, totalPages, currentPage === totalPages);
+  }
+  buatTombol("›", currentPage + 1, false, currentPage === totalPages);
+}
+
+// AMBIL DATA DARI SPREADSHEET
+async function loadGallery() {
+  try {
+    const response = await fetch(URL_SCRIPT + "?t=" + Date.now());
+    const responseText = await response.text();
+    let result;
+    try { result = JSON.parse(responseText); }
+    catch (_) { throw new Error("Respons server bukan JSON. Periksa deployment Apps Script dan izin akses."); }
+
+    if (result.status !== "success") {
+      throw new Error(result.message || "Gagal membaca galeri");
+    }
+
+    result.photos.sort((a, b) =>
+      new Date(b.tanggalUpload || 0) - new Date(a.tanggalUpload || 0)
+    );
+
+    photos = result.photos.map(photo => ({
+  idFoto: photo.id,
+  src: photo.url,
+  name: photo.namaKegiatan || "Dokumentasi Kegiatan",
+  date: formatDate(photo.tanggalKegiatan || photo.tanggalUpload),
+  description: photo.keterangan || ""
+}));
+
+    renderGallery();
+
+  } catch (error) {
+    console.error("Gagal memuat galeri:", error);
+    alert("Gagal mengambil data galeri. Pastikan URL Apps Script benar, deployment dapat diakses, dan doGet mengirim JSON.");
+  }
+}
+
+// BUKA FORM UPLOAD
+function openUpload() {
+  const dateInput = document.getElementById("activityDate");
+  if (!dateInput.value) {
+    const now = new Date();
+    dateInput.value = new Date(now.getTime() - now.getTimezoneOffset() * 60000)
+      .toISOString().slice(0, 10);
+  }
+  document.getElementById("uploadModal").style.display = "flex";
+}
+
+function closeUpload() {
+  document.getElementById("uploadModal").style.display = "none";
+}
+
+// PREVIEW FOTO
+document.getElementById("photoInput")
+.addEventListener("change", function() {
+  const file = this.files[0];
+  const preview = document.getElementById("preview");
+
+  if (!file) return;
+
+  if (!file.type.startsWith("image/")) {
+    alert("Silakan pilih file gambar.");
+    this.value = "";
+    return;
+  }
+
+  if (file.size > 5 * 1024 * 1024) {
+    alert("Ukuran foto maksimal 5 MB.");
+    this.value = "";
+    return;
+  }
+
+  preview.src = URL.createObjectURL(file);
+  preview.style.display = "block";
+});
+
+// UPLOAD KE GOOGLE DRIVE DAN SPREADSHEET
+document.getElementById("uploadForm")
+.addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const file = document.getElementById("photoInput").files[0];
+  const button = document.getElementById("submitButton");
+
+  const nama = document.getElementById("activityName").value.trim();
+  const tanggal = document.getElementById("activityDate").value;
+  const kode = document.getElementById("accessCode").value.trim();
+
+  if (!file || !nama || !tanggal || !kode) {
+    alert("Lengkapi foto, nama kegiatan, tanggal, dan kode akses.");
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = "Uploading...";
+
+  try {
+    const photo = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => reject(new Error("Gagal membaca foto."));
+
+      reader.readAsDataURL(file);
+    });
+
+    const payload = {
+      fileName: file.name,
+      mimeType: file.type || "image/jpeg",
+      photo: photo,
+      namaKegiatan: nama,
+      tanggalKegiatan: tanggal,
+      keterangan: document.getElementById("description").value,
+      kodeAkses: kode
+    };
+
+    const response = await fetch(URL_SCRIPT, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    });
+
+    const responseText = await response.text();
+    let result;
+    try { result = JSON.parse(responseText); }
+    catch (_) { throw new Error("Respons server bukan JSON. Periksa deployment Apps Script dan izin akses."); }
+
+    if (result.status !== "success") {
+      throw new Error(result.message || "Upload gagal.");
+    }
+
+    alert("Foto berhasil diupload!");
+
+    document.getElementById("uploadForm").reset();
+    document.getElementById("preview").style.display = "none";
+
+    closeUpload();
+    await loadGallery();
+
+  } catch (error) {
+    console.error("Upload error:", error);
+    alert("Upload gagal: " + error.message);
+
+  } finally {
+    button.disabled = false;
+    button.textContent = "Upload Foto";
+  }
+});
+	
+   // FUNGSI HAPUS FOTO
+async function hapusFoto(idFoto) {
+  const konfirmasi = confirm(
+    "Apakah yakin ingin menghapus foto ini?"
+  );
+
+  if (!konfirmasi) return;
+
+  // Membuat kolom kode akses tersembunyi
+  const kodeAkses = await new Promise((resolve) => {
+    const overlay = document.createElement("div");
+
+    overlay.style.cssText = `
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+    `;
+
+    overlay.innerHTML = `
+  <div style="
+    background: linear-gradient(145deg, #ffffff, #eaf4ff);
+    padding: 28px 24px;
+    border-radius: 18px;
+    width: 88%;
+    max-width: 360px;
+    text-align: center;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+    border-top: 5px solid #0756a5;
+  ">
+
+    <div style="
+      font-size: 38px;
+      margin-bottom: 10px;
+    ">🔐</div>
+
+    <h3 style="
+      color: #0756a5;
+      font-size: 20px;
+      margin: 0 0 8px;
+    ">
+      Verifikasi
+    </h3>
+
+    <p style="
+      color: #64748b;
+      font-size: 13px;
+      margin-bottom: 20px;
+    ">
+      Masukkan kode akses untuk menghapus foto.
+    </p>
+
+    <input
+      type="password"
+      id="kodeHapusFoto"
+      placeholder="Masukkan kode akses"
+      autocomplete="off"
+      style="
+        width: 100%;
+        padding: 13px;
+        box-sizing: border-box;
+        border: 1px solid #b8d4ee;
+        border-radius: 9px;
+        outline: none;
+        font-size: 15px;
+        margin-bottom: 22px;
+        background: white;
+      "
+    >
+
+    <div style="
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    ">
+
+      <button id="btnKonfirmasiKode" style="
+        background: linear-gradient(135deg, #0756a5, #2589d8);
+        color: white;
+        border: none;
+        padding: 10px 22px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+      ">
+        Lanjutkan
+      </button>
+
+      <button id="btnBatalKode" style="
+        background: #e2e8f0;
+        color: #334155;
+        border: none;
+        padding: 10px 22px;
+        border-radius: 8px;
+        font-size: 14px;
+        cursor: pointer;
+      ">
+        Batal
+      </button>
+
+    </div>
+  </div>
+`;
+    document.body.appendChild(overlay);
+
+    const input = overlay.querySelector("#kodeHapusFoto");
+    input.focus();
+
+    overlay.querySelector("#btnKonfirmasiKode").onclick = () => {
+      const kode = input.value;
+      overlay.remove();
+      resolve(kode);
+    };
+
+    overlay.querySelector("#btnBatalKode").onclick = () => {
+      overlay.remove();
+      resolve(null);
+    };
+  });
+
+  if (kodeAkses === null) return;
+
+  if (!kodeAkses) {
+    alert("Kode akses wajib diisi.");
+    return;
+  }
+
+  try {
+    const response = await fetch(URL_SCRIPT, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({
+        aksi: "hapus",
+        idFoto: idFoto,
+        kodeAkses: kodeAkses
+      })
+    });
+
+    const result = await response.json();
+
+    if (result.status !== "success") {
+      throw new Error(result.message || "Gagal menghapus foto.");
+    }
+
+    alert("Foto berhasil dihapus.");
+
+    await loadGallery();
+
+  } catch (error) {
+    alert("Penghapusan gagal: " + error.message);
+  }
+}
+
+// LIGHTBOX
+function showImage(src) {
+  document.getElementById("largeImage").src = src;
+  document.getElementById("lightbox").style.display = "flex";
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").style.display = "none";
+}
+
+// MUAT GALERI SAAT HALAMAN DIBUKA
+loadGallery();
+
+</script>
+
+</body>
+</html>
