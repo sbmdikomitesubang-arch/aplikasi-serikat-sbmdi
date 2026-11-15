@@ -373,107 +373,128 @@
     </div>
   </div>
 
-  <script>
 
-    const URL_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbyWhCXJvf7OWFFh4z90PhoksoY7LnWBKn9ff9Q4T9kHH9ME0BVSWiOlecjZCLyKkoSG/exec";
+<script>
+  const URL_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbyWhCXJvf7OWFFh4z90PhoksoY7LnWBKn9ff9Q4T9kHH9ME0BVSWiOlecjZCLyKkoSG/exec";
 
-    document.getElementById("btn-login").addEventListener("click", function() {
-      const nama = document.getElementById("nama").value.trim();
-      const idShare = document.getElementById("idShare").value.trim();
-      const pesan = document.getElementById("login-message");
-      const tombol = document.getElementById("btn-login");
+  document.getElementById("btn-login").addEventListener("click", function() {
+    const nama = document.getElementById("nama").value.trim();
+    const idShare = document.getElementById("idShare").value.trim();
+    const tombol = document.getElementById("btn-login");
 
-      if (!nama || !idShare) {
-        tampilkanPesan("Nama Lengkap dan ID Share wajib diisi.", false);
-        return;
-      }
+    if (!nama || !idShare) {
+      tampilkanPesan("Nama Lengkap dan ID Share wajib diisi.", false);
+      return;
+    }
 
-      tombol.disabled = true;
-      tombol.textContent = "MEMERIKSA...";
-      pesan.className = "login-message";
-      pesan.style.display = "none";
+    tombol.disabled = true;
+    tombol.textContent = "MEMERIKSA...";
 
-      const callbackName = "hasilLoginSBMDI";
+    const pesan = document.getElementById("login-message");
+    pesan.className = "login-message";
+    pesan.style.display = "none";
 
-      window[callbackName] = function(hasil) {
+    const callbackName = "hasilLoginSBMDI";
 
-        if (hasil.status === "success") {
-  tampilkanPesan("Login Berhasil", true);
+    window[callbackName] = function(hasil) {
 
-  tombol.textContent = "BERHASIL";
+      if (hasil && hasil.status === "success") {
 
-  // Mengirim ID Share ke Kodular
-  if (window.AppInventor &&
-      typeof window.AppInventor.setWebViewString === "function") {
-    window.AppInventor.setWebViewString(JSON.stringify({
-  namaLengkap: nama,
-  idShare: idShare
-}));
+        tampilkanPesan("Login Berhasil", true);
+        tombol.textContent = "BERHASIL";
 
-  setTimeout(function() {
-    window.location.href = "loading.html";
-  }, 700);
+        // Mengirim data anggota ke Kodular jika dibuka dari aplikasi
+        if (window.AppInventor &&
+            typeof window.AppInventor.setWebViewString === "function") {
 
-} else {
-  tampilkanPesan(hasil.message, false);
+          window.AppInventor.setWebViewString(JSON.stringify({
+            namaLengkap: nama,
+            idShare: idShare
+          }));
 
-  tombol.disabled = false;
-  tombol.textContent = "MASUK";
-}
+        }
 
-        delete window[callbackName];
-        document.getElementById("script-login").remove();
-      };
+        // Lanjut ke halaman loading
+        setTimeout(function() {
+          window.location.href = "loading.html";
+        }, 700);
 
-      const script = document.createElement("script");
-      script.id = "script-login";
+      } else {
 
-      script.onerror = function() {
-        tampilkanPesan("Gagal menghubungi server. Silakan coba lagi.", false);
+        tampilkanPesan(
+          hasil && hasil.message
+            ? hasil.message
+            : "Nama Lengkap atau ID Share tidak cocok.",
+          false
+        );
+
         tombol.disabled = false;
         tombol.textContent = "MASUK";
-        delete window[callbackName];
-        script.remove();
-      };
-
-      script.src = URL_APPS_SCRIPT +
-        "?nama=" + encodeURIComponent(nama) +
-        "&idShare=" + encodeURIComponent(idShare) +
-        "&callback=" + callbackName;
-
-      document.body.appendChild(script);
-    });
-
-    function tampilkanPesan(teks, berhasil) {
-      const pesan = document.getElementById("login-message");
-
-      pesan.textContent = berhasil
-        ? "Login Berhasil"
-        : teks === "Nama Lengkap atau ID Share tidak cocok."
-          ? "Nama Lengkap atau ID Share TIDAK TERDAFTAR/BELUM LENGKAP"
-          : teks;
-
-      pesan.className = "login-message " +
-        (berhasil ? "success" : "error");
-      pesan.style.display = "block";
-    }
-
-    /* FUNGSI POPUP INFORMASI */
-    function bukaInfo() {
-      document.getElementById("infoModal").style.display = "flex";
-    }
-
-    function tutupInfo() {
-      document.getElementById("infoModal").style.display = "none";
-    }
-
-    function tutupJikaLuar(event) {
-      if (event.target.id === "infoModal") {
-        tutupInfo();
       }
-    }
 
-  </script>
+      delete window[callbackName];
+
+      const scriptLogin = document.getElementById("script-login");
+      if (scriptLogin) {
+        scriptLogin.remove();
+      }
+    };
+
+    const script = document.createElement("script");
+    script.id = "script-login";
+
+    script.onerror = function() {
+      tampilkanPesan(
+        "Gagal menghubungi server. Silakan coba lagi.",
+        false
+      );
+
+      tombol.disabled = false;
+      tombol.textContent = "MASUK";
+
+      delete window[callbackName];
+      script.remove();
+    };
+
+    script.src = URL_APPS_SCRIPT +
+      "?nama=" + encodeURIComponent(nama) +
+      "&idShare=" + encodeURIComponent(idShare) +
+      "&callback=" + callbackName;
+
+    document.body.appendChild(script);
+  });
+
+  function tampilkanPesan(teks, berhasil) {
+    const pesan = document.getElementById("login-message");
+
+    pesan.textContent = berhasil
+      ? "Login Berhasil"
+      : teks === "Nama Lengkap atau ID Share tidak cocok."
+        ? "Nama Lengkap atau ID Share TIDAK TERDAFTAR/BELUM LENGKAP"
+        : teks;
+
+    pesan.className = "login-message " +
+      (berhasil ? "success" : "error");
+
+    pesan.style.display = "block";
+  }
+
+  /* FUNGSI POPUP INFORMASI */
+  function bukaInfo() {
+    document.getElementById("infoModal").style.display = "flex";
+  }
+
+  function tutupInfo() {
+    document.getElementById("infoModal").style.display = "none";
+  }
+
+  function tutupJikaLuar(event) {
+    if (event.target.id === "infoModal") {
+      tutupInfo();
+    }
+  }
+</script>
+
 
 </body>
 </html>
