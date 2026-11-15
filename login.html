@@ -405,8 +405,10 @@
   // Mengirim ID Share ke Kodular
   if (window.AppInventor &&
       typeof window.AppInventor.setWebViewString === "function") {
-    window.AppInventor.setWebViewString(idShare);
-  }
+    window.AppInventor.setWebViewString(JSON.stringify({
+  namaLengkap: nama,
+  idShare: idShare
+}));
 
   setTimeout(function() {
     window.location.href = "loading.html";
