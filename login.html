@@ -398,20 +398,26 @@
       window[callbackName] = function(hasil) {
 
         if (hasil.status === "success") {
-          tampilkanPesan("Login Berhasil", true);
+  tampilkanPesan("Login Berhasil", true);
 
-          tombol.textContent = "BERHASIL";
+  tombol.textContent = "BERHASIL";
 
-          setTimeout(function() {
-            window.location.href = "loading.html";
-          }, 700);
+  // Mengirim ID Share ke Kodular
+  if (window.AppInventor &&
+      typeof window.AppInventor.setWebViewString === "function") {
+    window.AppInventor.setWebViewString(idShare);
+  }
 
-        } else {
-          tampilkanPesan(hasil.message, false);
+  setTimeout(function() {
+    window.location.href = "loading.html";
+  }, 700);
 
-          tombol.disabled = false;
-          tombol.textContent = "MASUK";
-        }
+} else {
+  tampilkanPesan(hasil.message, false);
+
+  tombol.disabled = false;
+  tombol.textContent = "MASUK";
+}
 
         delete window[callbackName];
         document.getElementById("script-login").remove();
