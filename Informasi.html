@@ -1518,7 +1518,18 @@ kartu.appendChild(tautanFoto);
   const info=document.createElement("div");info.className="file-info";const judul=document.createElement("h4");judul.textContent=file.nama;const jenis=document.createElement("small");jenis.textContent=file.jenis;info.append(judul,jenis);top.append(ikon,info);
   const keterangan=document.createElement("p");keterangan.className="file-description";keterangan.textContent=file.judul+(file.keterangan?" — "+file.keterangan:"");
   const tanggal=document.createElement("div");tanggal.className="file-date";tanggal.textContent=file.tanggal;
-  const link=document.createElement("a");link.href=file.url;link.target="_blank";link.rel="noopener";link.textContent="Buka lampiran";link.style.cssText="display:inline-block;margin-top:10px;font-size:12px;color:#0756a5";
+  const link=document.createElement("a");
+
+if(file.idDrive){
+  link.href="https://drive.google.com/file/d/"+encodeURIComponent(file.idDrive)+"/view";
+}else{
+  link.href=file.url;
+}
+
+link.target="_blank";
+link.rel="noopener";
+link.textContent="Buka lampiran";
+link.style.cssText="display:inline-block;margin-top:10px;font-size:12px;color:#0756a5;text-decoration:none;";
   kartu.append(checkbox,top,keterangan,tanggal,link);
   checkbox.addEventListener("change",()=>{kartu.classList.toggle("selected",checkbox.checked);perbaruiJumlahPilihan();});
   kartu.addEventListener("click",e=>{if(modeHapus&&e.target!==checkbox&&e.target!==link){checkbox.checked=!checkbox.checked;kartu.classList.toggle("selected",checkbox.checked);perbaruiJumlahPilihan();}});
