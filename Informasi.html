@@ -1063,6 +1063,33 @@ body {
   </div>
 </div>
 
+  <!-- MODAL KODE AKSES HAPUS -->
+<div class="modal-overlay" id="deletePasswordModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <h3>Konfirmasi Penghapusan</h3>
+        <p>Masukkan kode akses petugas</p>
+      </div>
+    </div>
+
+    <input
+      type="password"
+      id="deleteAccessCode"
+      placeholder="Masukkan kode akses"
+      autocomplete="off"
+    >
+
+    <button type="button" class="primary-button" id="confirmDeletePassword">
+      Lanjutkan
+    </button>
+
+    <button type="button" class="cancel-button" id="cancelDeletePassword">
+      Batal
+    </button>
+  </div>
+</div>
+
 <!-- PESAN NOTIFIKASI -->
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
