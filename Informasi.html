@@ -1648,9 +1648,9 @@ document.getElementById("deleteSelected").addEventListener("click", async () => 
     return;
   }
 
-  const kodeAkses = prompt(
-    "Masukkan kode akses petugas untuk menghapus informasi:"
-  );
+ const kodeAkses = window.prompt(
+  "Masukkan kode akses petugas untuk menghapus informasi:"
+);
 
   if (!kodeAkses) return;
 
