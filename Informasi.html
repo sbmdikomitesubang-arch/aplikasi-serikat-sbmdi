@@ -1425,6 +1425,19 @@ function tampilkanFile() {
     link.style.cssText =
       "display:inline-block;margin-top:10px;font-size:12px;color:#0756a5;text-decoration:none;";
 
+    // File .xls tetap tersimpan dan dapat diunduh,
+    // tetapi tidak diarahkan ke pratinjau Google Drive.
+    link.addEventListener("click", function(e) {
+      if (/\.xls$/i.test(file.nama)) {
+        e.preventDefault();
+        tampilkanPesan(
+          "File Excel format lama (.xls) belum dapat dipratinjau. " +
+          "Silakan simpan ulang sebagai .xlsx agar dapat melihat pratinjau."
+        );
+      }
+    });
+    
+
     kartu.append(checkbox, top, keterangan, tanggal, link);
 
     checkbox.addEventListener("change", () => {
