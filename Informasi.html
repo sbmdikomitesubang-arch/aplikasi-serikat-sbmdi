@@ -3,15 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Informasi - SBMDI Komite Subang</title>
 
 <style>
-
-/* ==================================================
-   1. PENGATURAN DASAR DAN WARNA
-================================================== */
-
 :root {
   --navy: #071d49;
   --blue: #0756a5;
@@ -37,25 +31,14 @@ body {
   min-height: 100vh;
 }
 
-
-/* ==================================================
-   2. HEADER DAN LOGO
-================================================== */
-
+/* HEADER DAN LOGO */
 .header {
   min-height: 88px;
   padding: 12px 5%;
-  background: linear-gradient(
-    110deg,
-    #06184c,
-    #0756a5,
-    #83d0ef
-  );
-
+  background: linear-gradient(110deg, #06184c, #0756a5, #83d0ef);
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   position: relative;
   box-shadow: 0 4px 16px #102e5420;
   z-index: 10;
@@ -82,7 +65,7 @@ body {
 .menu-button span {
   width: 25px;
   height: 2px;
-  background: white;
+  background: #0756a5;
   border-radius: 5px;
 }
 
@@ -108,12 +91,11 @@ body {
   letter-spacing: 1.2px;
 }
 
-
 .welcome-section h2 {
   font-size: 30px;
   color: #000080;
   margin-top: 12px !important;
-  margin-bottom: 0px !important;
+  margin-bottom: 0 !important;
   padding-bottom: 0 !important;
   line-height: 1.2 !important;
 }
@@ -121,7 +103,7 @@ body {
 .welcome-section p {
   font-size: 14px;
   color: #718096;
-  margin-top: 0px !important;
+  margin-top: 0 !important;
   padding-top: 0 !important;
   line-height: 1.5 !important;
 }
@@ -132,32 +114,11 @@ body {
   background: transparent;
 }
 
-.menu-button {
-  width: 34px;
-  height: 38px;
-  border: 0;
-  background: transparent;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
-  cursor: pointer;
-}
-
-.menu-button span {
-  width: 25px;
-  height: 2px;
+.menu-area .menu-button span {
   background: #0756a5;
-  border-radius: 5px;
 }
 
-
-/* ==================================================
-   3. MENU PETUGAS
-================================================== */
-
-/* ANIMASI SLIDE DROPDOWN */
-
+/* MENU PETUGAS */
 .dropdown-menu {
   display: flex !important;
   flex-direction: column;
@@ -169,24 +130,17 @@ body {
   text-align: left;
   justify-content: flex-start;
   align-items: stretch;
-
   background: none;
   border: none;
-  border-radius: none;
   padding: 8px;
-
   box-shadow: 0 12px 30px rgba(10, 40, 80, 0.16);
   z-index: 20;
-
   opacity: 0;
   visibility: hidden;
   transform: translateY(-12px);
-
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease,
-    visibility 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
 }
+
 .dropdown-menu.show {
   opacity: 1;
   visibility: visible;
@@ -195,16 +149,13 @@ body {
   margin-left: 0;
 }
 
-
-/* ==================================================
-   4. KONTEN UTAMA
-================================================== */
-
+/* KONTEN UTAMA */
 .container {
   width: 90%;
   max-width: 1150px;
   margin: auto;
 }
+
 .welcome-section {
   padding: 45px 0 35px;
 }
@@ -229,11 +180,7 @@ body {
   font-size: 14px;
 }
 
-
-/* ==================================================
-   5. JUDUL BAGIAN
-================================================== */
-
+/* JUDUL BAGIAN */
 .section-heading,
 .content-heading {
   display: flex;
@@ -255,11 +202,7 @@ body {
   margin-top: 6px;
 }
 
-
-/* ==================================================
-   6. KARTU KATEGORI
-================================================== */
-
+/* KARTU KATEGORI */
 .category-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -272,11 +215,9 @@ body {
   border-radius: 13px;
   min-height: 105px;
   padding: 18px 14px;
-
   display: flex;
   align-items: center;
   gap: 13px;
-
   text-align: left;
   cursor: pointer;
   transition: 0.2s;
@@ -306,7 +247,6 @@ body {
   font-size: 10px;
   color: var(--muted);
 }
-
 
 .category-icon {
   width: 48px;
@@ -340,12 +280,7 @@ body {
   color: #64748b;
 }
 
-
-
-/* ==================================================
-   7. PENCARIAN DAN DAFTAR FILE
-================================================== */
-
+/* PENCARIAN DAN DAFTAR FILE */
 .content-section {
   margin-top: 42px;
   margin-bottom: 60px;
@@ -500,9 +435,7 @@ body {
   background: #fff8f8;
 }
 
-
-
-/* PRATINJAU FOTO PADA KARTU INFORMASI */
+/* PRATINJAU FOTO */
 .photo-preview-link {
   display: block;
   width: 100%;
@@ -549,10 +482,7 @@ body {
   border: 0;
 }
 
-/* ==================================================
-   8. MODE HAPUS FILE
-================================================== */
-
+/* MODE HAPUS FILE */
 .delete-toolbar {
   display: none;
   align-items: center;
@@ -593,11 +523,7 @@ body {
   color: white;
 }
 
-
-/* ==================================================
-   9. TAMPILAN KOSONG
-================================================== */
-
+/* TAMPILAN KOSONG */
 .empty-state {
   display: none;
   background: #e5e7eb;
@@ -628,11 +554,7 @@ body {
   color: var(--muted);
 }
 
-
-/* ==================================================
-   10. FORM UPLOAD
-================================================== */
-
+/* FORM UPLOAD */
 .modal-overlay {
   display: none;
   position: fixed;
@@ -732,11 +654,7 @@ body {
   cursor: pointer;
 }
 
-
-/* ==================================================
-   11. NOTIFIKASI PESAN
-================================================== */
-
+/* NOTIFIKASI PESAN */
 .toast {
   position: fixed;
   bottom: 25px;
@@ -759,11 +677,7 @@ body {
   opacity: 1;
 }
 
-
-/* ==================================================
-   12. FOOTER
-================================================== */
-
+/* FOOTER */
 .footer {
   text-align: center;
   padding: 25px 15px;
@@ -784,13 +698,8 @@ body {
   font-size: 10px;
 }
 
-
-/* ==================================================
-   13. TAMPILAN TABLET DAN HP
-================================================== */
-
+/* TAMPILAN TABLET DAN HP */
 @media (max-width: 760px) {
-
   .header {
     min-height: 78px;
     padding: 10px 5%;
@@ -874,10 +783,7 @@ body {
   .content-heading h3 {
     font-size: 16px;
   }
-
 }
-
-
 
 @media (max-width: 380px) {
   .file-grid {
@@ -895,7 +801,6 @@ body {
 }
 
 /* PERBAIKAN TOMBOL DROPDOWN */
-
 #dropdownMenu > button {
   display: flex !important;
   flex-direction: row !important;
@@ -908,7 +813,7 @@ body {
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
-  background: linear-gradient(90deg, #000080, #00bfff)!important;
+  background: linear-gradient(90deg, #000080, #00bfff) !important;
   border-radius: 10px;
   text-align: left !important;
   color: #ffffff !important;
@@ -926,50 +831,31 @@ body {
 #dropdownMenu > button:hover {
   background: #0000cd !important;
 }
-
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- ==================================================
-     HEADER
-================================================== -->
+<!-- HEADER -->
 <header class="header">
-
   <div class="header-left">
-
     <img src="gambar/sbmdi1.png" alt="sbmdi1" class="logo">
-
     <div class="header-title">
       <h1>INFORMASI & DOKUMENTASI</h1>
       <p>SBMDI KOMITE SUBANG</p>
     </div>
-
   </div>
-
 </header>
 
 <!-- MENU DI LUAR HEADER -->
 <div class="menu-area">
-
-  <button
-    class="menu-button"
-    id="menuButton"
-    aria-label="Buka menu"
-    aria-expanded="false"
-  >
+  <button class="menu-button" id="menuButton" aria-label="Buka menu" aria-expanded="false">
     <span></span>
     <span></span>
     <span></span>
   </button>
 
-  <!-- MENU PETUGAS -->
   <div class="dropdown-menu" id="dropdownMenu">
-
     <button type="button" id="uploadMenu">
       <span class="menu-symbol"></span>
       <b>Upload File</b>
@@ -979,283 +865,157 @@ body {
       <span class="menu-symbol"></span>
       <b>Hapus File</b>
     </button>
-
   </div>
-
 </div>
 
-
-
-<!-- ==================================================
-     KONTEN UTAMA
-================================================== -->
-
+<!-- KONTEN UTAMA -->
 <main class="container">
 
-
-  <!-- SAMBUTAN -->
-
   <section class="welcome-section">
-
     <h2>Pusat Informasi Organisasi</h2>
-
     <p>
       Temukan informasi, dokumentasi kegiatan, video,
       dan dokumen resmi SBMDI Komite Subang.
     </p>
-
   </section>
 
-
-
   <!-- KATEGORI -->
-
   <section class="category-section">
-
     <div class="section-heading">
-
       <div>
         <h3>Kategori Informasi</h3>
         <p>Pilih jenis informasi yang ingin dilihat</p>
       </div>
-
     </div>
 
+    <div class="category-grid">
 
-    
-<div class="category-grid">
+      <button class="category-card active" data-category="foto" type="button">
+        <div class="category-icon photo-icon">
+          <img src="gambar/ikon foto.png" alt="Foto">
+        </div>
+        <div class="category-info">
+          <strong>Foto</strong>
+          <small>Dokumentasi kegiatan</small>
+        </div>
+      </button>
 
-  <!-- KATEGORI FOTO -->
-  <button
-    class="category-card active"
-    data-category="foto"
-    type="button"
-  >
-    <div class="category-icon photo-icon">
-      <img src="gambar/ikon foto.png" alt="Foto">
+      <button class="category-card" data-category="video" type="button">
+        <div class="category-icon video-icon">
+          <img src="gambar/ikon video.png" alt="Video">
+        </div>
+        <div class="category-info">
+          <strong>Video</strong>
+          <small>Video kegiatan</small>
+        </div>
+      </button>
+
+      <button class="category-card" data-category="doc" type="button">
+        <div class="category-icon video-icon">
+          <img src="gambar/ikon word.png" alt="Word">
+        </div>
+        <div class="category-info">
+          <strong>Dokumen Word</strong>
+          <small>File DOC dan DOCX</small>
+        </div>
+      </button>
+
+      <button class="category-card" data-category="excel" type="button">
+        <div class="category-icon video-icon">
+          <img src="gambar/ikon excel.png" alt="Excel">
+        </div>
+        <div class="category-info">
+          <strong>Dokumen Excel</strong>
+          <small>File XLS dan XLSX</small>
+        </div>
+      </button>
+
+      <button class="category-card" data-category="pdf" type="button">
+        <div class="category-icon video-icon">
+          <img src="gambar/ikon pdf.png" alt="PDF">
+        </div>
+        <div class="category-info">
+          <strong>Dokumen PDF</strong>
+          <small>Arsip dan surat resmi</small>
+        </div>
+      </button>
+
     </div>
-
-    <div class="category-info">
-      <strong>Foto</strong>
-      <small>Dokumentasi kegiatan</small>
-    </div>
-  </button>
-
-
-  <!-- KATEGORI VIDEO -->
-  <button
-    class="category-card"
-    data-category="video"
-    type="button"
-  >
-    <div class="category-icon video-icon">
-      <img src="gambar/ikon video.png" alt="Video">
-    </div>
-
-    <div class="category-info">
-      <strong>Video</strong>
-      <small>Video kegiatan</small>
-    </div>
-  </button>
-
-
-  <!-- KATEGORI WORD -->
-  <button
-    class="category-card"
-    data-category="doc"
-    type="button"
-  >
-    <div class="category-icon video-icon">
-      <img src="gambar/ikon word.png" alt="Video">
-    </div>
-
-    <div class="category-info">
-      <strong>Dokumen Word</strong>
-      <small>File DOC dan DOCX</small>
-    </div>
-  </button>
-
-
-  <!-- KATEGORI EXCEL -->
-  <button
-    class="category-card"
-    data-category="excel"
-    type="button"
-  >
-    <div class="category-icon video-icon">
-      <img src="gambar/ikon excel.png" alt="Video">
-    </div>
-
-    <div class="category-info">
-      <strong>Dokumen Excel</strong>
-      <small>File XLS dan XLSX</small>
-    </div>
-  </button>
-
-  <!-- KATEGORI PDF -->
-  <button
-    class="category-card"
-    data-category="pdf"
-    type="button"
-  >
-    <div class="category-icon video-icon">
-      <img src="gambar/ikon pdf.png" alt="Video">
-    </div>
-
-    <div class="category-info">
-      <strong>Dokumen PDF</strong>
-      <small>Arsip dan surat resmi</small>
-    </div>
-  </button>
-
-</div>
-
-
   </section>
 
-
-
   <!-- DAFTAR INFORMASI -->
-
   <section class="content-section">
 
-
     <div class="content-heading">
-
       <div>
         <h3 id="contentTitle">Dokumentasi Foto</h3>
-
         <p id="contentDescription">
           Kumpulan foto kegiatan SBMDI Komite Subang
         </p>
       </div>
 
-      <span class="file-count" id="fileCount">
-        0 File
-      </span>
-
+      <span class="file-count" id="fileCount">0 File</span>
     </div>
 
-
-
     <!-- PENCARIAN -->
-
     <div class="search-box">
-
       <span class="search-symbol">⌕</span>
-
       <input
         type="search"
         id="searchInput"
         placeholder="Cari nama kegiatan atau informasi..."
         autocomplete="off"
       >
-
     </div>
 
-
-
     <!-- TOOLBAR HAPUS -->
-
     <div class="delete-toolbar" id="deleteToolbar">
+      <span id="selectedCount">0 file dipilih</span>
 
-      <span id="selectedCount">
-        0 file dipilih
-      </span>
-
-      <button
-        class="cancel-button"
-        id="cancelDelete"
-        type="button"
-      >
+      <button class="cancel-button" id="cancelDelete" type="button">
         Batal
       </button>
 
-      <button
-        class="danger-button"
-        id="deleteSelected"
-        type="button"
-      >
+      <button class="danger-button" id="deleteSelected" type="button">
         Hapus Terpilih
       </button>
-
     </div>
-
-
 
     <!-- DAFTAR FILE -->
-
     <div class="file-grid" id="fileGrid"></div>
 
-
-
     <!-- KONDISI KOSONG -->
-
     <div class="empty-state show" id="emptyState">
-
       <div class="empty-icon">▤</div>
-
       <h3>Belum Ada Informasi</h3>
-
-      <p>
-        Informasi pada kategori ini belum tersedia.
-      </p>
-
+      <p>Informasi pada kategori ini belum tersedia.</p>
     </div>
-
 
   </section>
-
-
 </main>
 
-
-
-<!-- ==================================================
-     MODAL UPLOAD
-================================================== -->
-
+<!-- MODAL UPLOAD -->
 <div class="modal-overlay" id="uploadModal">
-
   <div class="modal">
 
-
     <div class="modal-header">
-
       <div>
         <h3>Upload Informasi</h3>
-
-        <p>
-          Tambahkan dokumentasi atau dokumen baru
-        </p>
+        <p>Tambahkan dokumentasi atau dokumen baru</p>
       </div>
 
-      <button
-        class="close-button"
-        id="closeUpload"
-        type="button"
-        aria-label="Tutup"
-      >
+      <button class="close-button" id="closeUpload" type="button" aria-label="Tutup">
         ×
       </button>
-
     </div>
 
-
-
     <form id="uploadForm">
-
 
       <div class="file-note">
         Satu informasi dapat memuat beberapa lampiran sekaligus dari berbagai jenis file.
       </div>
 
-
-
-      <label for="activityName">
-        Nama Kegiatan / Judul Informasi
-      </label>
-
+      <label for="activityName">Nama Kegiatan / Judul Informasi</label>
       <input
         type="text"
         id="activityName"
@@ -1263,35 +1023,17 @@ body {
         required
       >
 
+      <label for="activityDate">Tanggal Kegiatan</label>
+      <input type="date" id="activityDate">
 
-
-      <label for="activityDate">
-        Tanggal Kegiatan
-      </label>
-
-      <input
-        type="date"
-        id="activityDate"
-      >
-
-
-
-      <label for="description">
-        Keterangan
-      </label>
-
+      <label for="description">Keterangan</label>
       <textarea
         id="description"
         rows="3"
         placeholder="Tuliskan keterangan informasi..."
       ></textarea>
 
-
-
-      <label for="fileInput">
-        Pilih File
-      </label>
-
+      <label for="fileInput">Pilih File</label>
       <input
         type="file"
         id="fileInput"
@@ -1304,12 +1046,7 @@ body {
         JPG, JPEG, PNG, MP4, DOC, DOCX, XLS, XLSX, PDF. Maksimal 5 MB per file, 20 file dan total 20 MB.
       </div>
 
-
-
-      <label for="accessCode">
-        Kode Akses Petugas
-      </label>
-
+      <label for="accessCode">Kode Akses Petugas</label>
       <input
         type="password"
         id="accessCode"
@@ -1318,259 +1055,631 @@ body {
         autocomplete="off"
       >
 
-
-
-      <button
-        type="submit"
-        class="primary-button"
-      >
+      <button type="submit" class="primary-button">
         Upload Informasi
       </button>
 
-
     </form>
-
   </div>
-
 </div>
 
+<!-- PESAN NOTIFIKASI -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-
-<!-- ==================================================
-     PESAN NOTIFIKASI
-================================================== -->
-
-<div
-  class="toast"
-  id="toast"
-  role="status"
-  aria-live="polite"
-></div>
-
-
-
-<!-- ==================================================
-     FOOTER
-================================================== -->
-
+<!-- FOOTER -->
 <footer class="footer">
-
   <p>© 2026 SBMDI Komite Subang All Right Reserved</p>
-
-  <span>
-    Infokom SBMDI
-  </span>
-
+  <span>Infokom SBMDI</span>
 </footer>
-
-
 
 <script>
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw7ntEsR5i8jSz5fk6R7YAA8EdssTa0EUalzgxJf2SCO5EWLrKkuXKvGfVmN68VpPVSgQ/exec";
+
 const MAX_FILE_BYTES = 5 * 1024 * 1024;
 const MAX_TOTAL_BYTES = 20 * 1024 * 1024;
 const MAX_FILES = 20;
+
 let daftarFile = [];
 let kategoriAktif = "foto";
 let modeHapus = false;
 let waktuPesan;
 
 const pengaturanKategori = {
- foto:{judul:"Dokumentasi Foto",keterangan:"Kumpulan foto kegiatan SBMDI Komite Subang",jenis:"Foto",ikon:"FOTO"},
- video:{judul:"Dokumentasi Video",keterangan:"Kumpulan video kegiatan SBMDI Komite Subang",jenis:"Video",ikon:"VIDEO"},
- doc:{judul:"Dokumen Word",keterangan:"Dokumen DOC dan DOCX organisasi",jenis:"Dokumen Word",ikon:"DOC"},
- pdf:{judul:"Dokumen PDF",keterangan:"Arsip dan dokumen PDF organisasi",jenis:"PDF",ikon:"PDF"},
- excel:{judul:"Dokumen Excel",keterangan:"Arsip dan laporan Excel SBMDI Komite Subang",jenis:"Excel",ikon:"XLS"}
+  foto: {
+    judul: "Dokumentasi Foto",
+    keterangan: "Kumpulan foto kegiatan SBMDI Komite Subang",
+    jenis: "Foto",
+    ikon: "FOTO"
+  },
+  video: {
+    judul: "Dokumentasi Video",
+    keterangan: "Kumpulan video kegiatan SBMDI Komite Subang",
+    jenis: "Video",
+    ikon: "VIDEO"
+  },
+  doc: {
+    judul: "Dokumen Word",
+    keterangan: "Dokumen DOC dan DOCX organisasi",
+    jenis: "Dokumen Word",
+    ikon: "DOC"
+  },
+  pdf: {
+    judul: "Dokumen PDF",
+    keterangan: "Arsip dan dokumen PDF organisasi",
+    jenis: "PDF",
+    ikon: "PDF"
+  },
+  excel: {
+    judul: "Dokumen Excel",
+    keterangan: "Arsip dan laporan Excel SBMDI Komite Subang",
+    jenis: "Excel",
+    ikon: "XLS"
+  }
 };
-const menuButton=document.getElementById("menuButton");
-const dropdownMenu=document.getElementById("dropdownMenu");
-const uploadModal=document.getElementById("uploadModal");
-const uploadForm=document.getElementById("uploadForm");
-const fileInput=document.getElementById("fileInput");
-const fileNote=document.getElementById("fileNote");
-const fileGrid=document.getElementById("fileGrid");
-const emptyState=document.getElementById("emptyState");
-const searchInput=document.getElementById("searchInput");
-const deleteToolbar=document.getElementById("deleteToolbar");
-const selectedCount=document.getElementById("selectedCount");
 
-function tampilkanPesan(pesan){
- const toast=document.getElementById("toast"); toast.textContent=pesan; toast.classList.add("show");
- clearTimeout(waktuPesan); waktuPesan=setTimeout(()=>toast.classList.remove("show"),3500);
-}
-function escapeHTML(teks){return String(teks??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));}
-function kategoriDariJenis(jenis){
- return ({
-  "Foto":"foto",
-  "Video":"video",
-  "Dokumen Word":"doc",
-  "PDF":"pdf",
-  "Excel":"excel"
- })[jenis]||"pdf";
-}
-function formatTanggal(tanggal){
- if(!tanggal)return ""; const d=new Date(tanggal); if(isNaN(d))return String(tanggal);
- return d.toLocaleDateString("id-ID",{day:"2-digit",month:"long",year:"numeric"});
-}
-async function panggilGet(action){
- const response=await fetch(WEB_APP_URL+"?action="+encodeURIComponent(action)+"&t="+Date.now());
- const data=await response.json(); if(!response.ok||data.status!=="success")throw new Error(data.message||"Gagal mengambil data."); return data;
-}
-async function panggilPost(payload){
- const response=await fetch(WEB_APP_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
- const data=await response.json(); if(!response.ok||data.status!=="success")throw new Error(data.message||"Permintaan gagal."); return data;
-}
-async function muatInformasi(){
- try{
-  const hasil=await panggilGet("list"); daftarFile=[];
-  (hasil.data||[]).forEach(info=>(info.lampiran||[]).forEach(file=>daftarFile.push({
-   id:info.id,nama:file.nama,jenis:file.jenis,kategori:kategoriDariJenis(file.jenis),ikon:pengaturanKategori[kategoriDariJenis(file.jenis)].ikon,
-   keterangan:info.keterangan||info.judul||"",tanggal:formatTanggal(info.tanggal),judul:info.judul||"Informasi SBMDI",url:file.url,idDrive:file.idDrive
-  })));
-  tampilkanFile();
- }catch(e){tampilkanPesan("Gagal memuat informasi: "+e.message);}
-}
-menuButton.addEventListener("click",()=>{const buka=dropdownMenu.classList.toggle("show");menuButton.setAttribute("aria-expanded",buka?"true":"false");});
-document.addEventListener("click",e=>{if(!menuButton.contains(e.target)&&!dropdownMenu.contains(e.target))dropdownMenu.classList.remove("show");});
-document.querySelectorAll(".category-card").forEach(btn=>btn.addEventListener("click",()=>{
- kategoriAktif=btn.dataset.category;document.querySelectorAll(".category-card").forEach(x=>x.classList.toggle("active",x===btn));modeHapus=false;perbaruiModeHapus();tampilkanFile();
-}));
+const menuButton = document.getElementById("menuButton");
+const dropdownMenu = document.getElementById("dropdownMenu");
+const uploadModal = document.getElementById("uploadModal");
+const uploadForm = document.getElementById("uploadForm");
+const fileInput = document.getElementById("fileInput");
+const fileNote = document.getElementById("fileNote");
+const fileGrid = document.getElementById("fileGrid");
+const emptyState = document.getElementById("emptyState");
+const searchInput = document.getElementById("searchInput");
+const deleteToolbar = document.getElementById("deleteToolbar");
+const selectedCount = document.getElementById("selectedCount");
 
-function tampilkanFile(){
- const pengaturan=pengaturanKategori[kategoriAktif];document.getElementById("contentTitle").textContent=pengaturan.judul;document.getElementById("contentDescription").textContent=pengaturan.keterangan;
- const kata=searchInput.value.trim().toLowerCase();const hasil=daftarFile.filter(f=>f.kategori===kategoriAktif&&(f.nama+" "+f.keterangan+" "+f.judul).toLowerCase().includes(kata));
- document.getElementById("fileCount").textContent=hasil.length+" File";fileGrid.innerHTML="";emptyState.classList.toggle("show",hasil.length===0);
- hasil.forEach(file=>{
-  const kartu=document.createElement("div");kartu.className="file-card";
-  const checkbox=document.createElement("input");checkbox.type="checkbox";checkbox.className="file-checkbox";checkbox.value=file.id;checkbox.setAttribute("aria-label","Pilih informasi "+file.judul);
-  // Untuk kategori Foto, tampilkan pratinjau gambar dari Google Drive.
-  if(file.kategori==="foto"){
-   const tautanFoto=document.createElement("a");
-   tautanFoto.className="photo-preview-link";
-   tautanFoto.href=file.url;
-   tautanFoto.target="_blank";
-   tautanFoto.rel="noopener";
-   tautanFoto.title="Klik untuk melihat foto ukuran penuh";
+function tampilkanPesan(pesan) {
+  const toast = document.getElementById("toast");
+  toast.textContent = pesan;
+  toast.classList.add("show");
 
-   const gambar=document.createElement("img");
-   gambar.className="photo-preview";
-   gambar.alt=file.nama;
-   gambar.loading="lazy";
-   gambar.src=file.idDrive
-    ? "https://drive.google.com/thumbnail?id="+encodeURIComponent(file.idDrive)+"&sz=w1000"
-    : file.url;
-   gambar.onerror=()=>{
-    gambar.style.display="none";
-    const pesan=document.createElement("div");
-    pesan.className="photo-preview-error";
-    pesan.textContent="Pratinjau foto tidak dapat dimuat. Klik nama file untuk membukanya.";
-    tautanFoto.appendChild(pesan);
-   };
-   tautanFoto.appendChild(gambar);
+  clearTimeout(waktuPesan);
+  waktuPesan = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3500);
+}
 
-tautanFoto.addEventListener("click", function(e){
+function escapeHTML(teks) {
+  return String(teks ?? "").replace(/[&<>"']/g, c => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  }[c]));
+}
+
+function kategoriDariJenis(jenis) {
+  return ({
+    "Foto": "foto",
+    "Video": "video",
+    "Dokumen Word": "doc",
+    "PDF": "pdf",
+    "Excel": "excel"
+  })[jenis] || "pdf";
+}
+
+function formatTanggal(tanggal) {
+  if (!tanggal) return "";
+
+  const d = new Date(tanggal);
+  if (isNaN(d)) return String(tanggal);
+
+  return d.toLocaleDateString("id-ID", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric"
+  });
+}
+
+async function panggilGet(action) {
+  const response = await fetch(
+    WEB_APP_URL + "?action=" + encodeURIComponent(action) + "&t=" + Date.now()
+  );
+
+  const data = await response.json();
+
+  if (!response.ok || data.status !== "success") {
+    throw new Error(data.message || "Gagal mengambil data.");
+  }
+
+  return data;
+}
+
+async function panggilPost(payload) {
+  const response = await fetch(WEB_APP_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify(payload)
+  });
+
+  const data = await response.json();
+
+  if (!response.ok || data.status !== "success") {
+    throw new Error(data.message || "Permintaan gagal.");
+  }
+
+  return data;
+}
+
+async function muatInformasi() {
+  try {
+    const hasil = await panggilGet("list");
+    daftarFile = [];
+
+    (hasil.data || []).forEach(info => {
+      (info.lampiran || []).forEach(file => {
+        const kategori = kategoriDariJenis(file.jenis);
+
+        daftarFile.push({
+          id: info.id,
+          nama: file.nama,
+          jenis: file.jenis,
+          kategori: kategori,
+          ikon: pengaturanKategori[kategori].ikon,
+          keterangan: info.keterangan || info.judul || "",
+          tanggal: formatTanggal(info.tanggal),
+          judul: info.judul || "Informasi SBMDI",
+          url: file.url,
+          idDrive: file.idDrive
+        });
+      });
+    });
+
+    tampilkanFile();
+
+  } catch (e) {
+    tampilkanPesan("Gagal memuat informasi: " + e.message);
+  }
+}
+
+/* MENU DROPDOWN */
+menuButton.addEventListener("click", () => {
+  const buka = dropdownMenu.classList.toggle("show");
+  menuButton.setAttribute("aria-expanded", buka ? "true" : "false");
+});
+
+document.addEventListener("click", e => {
+  if (
+    !menuButton.contains(e.target) &&
+    !dropdownMenu.contains(e.target)
+  ) {
+    dropdownMenu.classList.remove("show");
+  }
+});
+
+/* PILIH KATEGORI */
+document.querySelectorAll(".category-card").forEach(btn => {
+  btn.addEventListener("click", () => {
+    kategoriAktif = btn.dataset.category;
+
+    document.querySelectorAll(".category-card").forEach(x => {
+      x.classList.toggle("active", x === btn);
+    });
+
+    modeHapus = false;
+    perbaruiModeHapus();
+    tampilkanFile();
+  });
+});
+
+/* TAMPILKAN FILE */
+function tampilkanFile() {
+  const pengaturan = pengaturanKategori[kategoriAktif];
+
+  document.getElementById("contentTitle").textContent = pengaturan.judul;
+  document.getElementById("contentDescription").textContent = pengaturan.keterangan;
+
+  const kata = searchInput.value.trim().toLowerCase();
+
+  const hasil = daftarFile.filter(f =>
+    f.kategori === kategoriAktif &&
+    (f.nama + " " + f.keterangan + " " + f.judul)
+      .toLowerCase()
+      .includes(kata)
+  );
+
+  document.getElementById("fileCount").textContent = hasil.length + " File";
+  fileGrid.innerHTML = "";
+  emptyState.classList.toggle("show", hasil.length === 0);
+
+  hasil.forEach(file => {
+    const kartu = document.createElement("div");
+    kartu.className = "file-card";
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.className = "file-checkbox";
+    checkbox.value = file.id;
+    checkbox.setAttribute("aria-label", "Pilih informasi " + file.judul);
+
+    /* PRATINJAU FOTO */
+    if (file.kategori === "foto") {
+      const tautanFoto = document.createElement("a");
+      tautanFoto.className = "photo-preview-link";
+      tautanFoto.href = file.url;
+      tautanFoto.target = "_blank";
+      tautanFoto.rel = "noopener";
+      tautanFoto.title = "Klik untuk melihat foto ukuran penuh";
+
+      const gambar = document.createElement("img");
+      gambar.className = "photo-preview";
+      gambar.alt = file.nama;
+      gambar.loading = "lazy";
+
+      gambar.src = file.idDrive
+        ? "https://drive.google.com/thumbnail?id=" +
+          encodeURIComponent(file.idDrive) + "&sz=w1000"
+        : file.url;
+
+      gambar.onerror = () => {
+        gambar.style.display = "none";
+
+        const pesan = document.createElement("div");
+        pesan.className = "photo-preview-error";
+        pesan.textContent =
+          "Pratinjau foto tidak dapat dimuat. Klik nama file untuk membukanya.";
+
+        tautanFoto.appendChild(pesan);
+      };
+
+      tautanFoto.appendChild(gambar);
+
+      tautanFoto.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        const lightbox = document.createElement("div");
+        lightbox.style.cssText =
+          "position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;padding:12px;";
+
+        const fotoBesar = document.createElement("img");
+        fotoBesar.src = gambar.src;
+        fotoBesar.alt = gambar.alt;
+        fotoBesar.style.cssText =
+          "max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;";
+
+        const tombolTutup = document.createElement("button");
+        tombolTutup.textContent = "✕";
+        tombolTutup.style.cssText =
+          "position:absolute;top:15px;right:15px;width:42px;height:42px;border:0;border-radius:50%;background:#fff;color:#111;font-size:24px;";
+
+        tombolTutup.addEventListener("click", function() {
+          lightbox.remove();
+        });
+
+        lightbox.addEventListener("click", function(e) {
+          if (e.target === lightbox) lightbox.remove();
+        });
+
+        lightbox.appendChild(fotoBesar);
+        lightbox.appendChild(tombolTutup);
+        document.body.appendChild(lightbox);
+      });
+
+      kartu.appendChild(tautanFoto);
+    }
+
+    /* PRATINJAU VIDEO */
+    if (file.kategori === "video") {
+      const pembungkusVideo = document.createElement("div");
+      pembungkusVideo.className = "video-preview-wrapper";
+
+      const video = document.createElement("iframe");
+      video.src =
+        "https://drive.google.com/file/d/" +
+        encodeURIComponent(file.idDrive) + "/preview";
+
+      video.title = "Pratinjau video";
+      video.allow = "autoplay; fullscreen";
+      video.allowFullscreen = true;
+      video.setAttribute("allowfullscreen", "");
+
+      pembungkusVideo.appendChild(video);
+      kartu.appendChild(pembungkusVideo);
+    }
+
+    const top = document.createElement("div");
+    top.className = "file-card-top";
+
+    const ikon = document.createElement("div");
+    ikon.className = "file-type-icon " + file.kategori;
+    ikon.textContent = file.ikon;
+
+    const info = document.createElement("div");
+    info.className = "file-info";
+
+    const judul = document.createElement("h4");
+    judul.textContent = file.nama;
+
+    const jenis = document.createElement("small");
+    jenis.textContent = file.jenis;
+
+    info.append(judul, jenis);
+    top.append(ikon, info);
+
+    const keterangan = document.createElement("p");
+    keterangan.className = "file-description";
+    keterangan.textContent =
+      file.judul + (file.keterangan ? " — " + file.keterangan : "");
+
+    const tanggal = document.createElement("div");
+    tanggal.className = "file-date";
+    tanggal.textContent = file.tanggal;
+
+    const link = document.createElement("a");
+
+    if (file.idDrive) {
+      link.href =
+        "https://drive.google.com/file/d/" +
+        encodeURIComponent(file.idDrive) + "/view";
+    } else {
+      link.href = file.url;
+    }
+
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.textContent = "Buka lampiran";
+    link.style.cssText =
+      "display:inline-block;margin-top:10px;font-size:12px;color:#0756a5;text-decoration:none;";
+
+    kartu.append(checkbox, top, keterangan, tanggal, link);
+
+    checkbox.addEventListener("change", () => {
+      kartu.classList.toggle("selected", checkbox.checked);
+      perbaruiJumlahPilihan();
+    });
+
+    kartu.addEventListener("click", e => {
+      if (modeHapus && e.target !== checkbox && e.target !== link) {
+        checkbox.checked = !checkbox.checked;
+        kartu.classList.toggle("selected", checkbox.checked);
+        perbaruiJumlahPilihan();
+      }
+    });
+
+    fileGrid.appendChild(kartu);
+  });
+
+  perbaruiModeHapus(false);
+}
+
+/* PENCARIAN */
+searchInput.addEventListener("input", tampilkanFile);
+
+/* BUKA MODAL UPLOAD */
+document.getElementById("uploadMenu").addEventListener("click", () => {
+  dropdownMenu.classList.remove("show");
+  uploadModal.classList.add("show");
+});
+
+document.getElementById("closeUpload").addEventListener("click", () => {
+  uploadModal.classList.remove("show");
+});
+
+uploadModal.addEventListener("click", e => {
+  if (e.target === uploadModal) {
+    uploadModal.classList.remove("show");
+  }
+});
+
+/* PILIH FILE */
+fileInput.addEventListener("change", () => {
+  const files = Array.from(fileInput.files || []);
+
+  fileNote.textContent =
+    files.length +
+    " file dipilih. Maksimal 5 MB per file dan total 20 MB.";
+});
+
+/* UBAH FILE MENJADI BASE64 */
+function fileKeBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      resolve({
+        nama: file.name,
+        mimeType: file.type,
+        base64: String(reader.result).split(",")[1]
+      });
+    };
+
+    reader.onerror = () => {
+      reject(new Error("Gagal membaca file " + file.name));
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+
+/* PROSES UPLOAD */
+uploadForm.addEventListener("submit", async e => {
   e.preventDefault();
 
-  const lightbox=document.createElement("div");
-  lightbox.style.cssText="position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;padding:12px;";
+  const judul = document.getElementById("activityName").value.trim();
+  const keterangan = document.getElementById("description").value.trim();
+  const tanggalKegiatan = document.getElementById("activityDate").value;
+  const kodeAkses = document.getElementById("accessCode").value;
+  const files = Array.from(fileInput.files || []);
 
-  const fotoBesar=document.createElement("img");
-  fotoBesar.src=gambar.src;
-  fotoBesar.alt=gambar.alt;
-  fotoBesar.style.cssText="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;";
+  if (!judul || !kodeAkses || !files.length) {
+    tampilkanPesan("Judul, kode akses, dan lampiran wajib diisi.");
+    return;
+  }
 
-  const tombolTutup=document.createElement("button");
-  tombolTutup.textContent="✕";
-  tombolTutup.style.cssText="position:absolute;top:15px;right:15px;width:42px;height:42px;border:0;border-radius:50%;background:#fff;color:#111;font-size:24px;";
+  if (files.length > MAX_FILES) {
+    tampilkanPesan("Maksimal 20 lampiran.");
+    return;
+  }
 
-  tombolTutup.addEventListener("click",function(){
-    lightbox.remove();
-  });
+  const total = files.reduce((n, f) => n + f.size, 0);
 
-  lightbox.addEventListener("click",function(e){
-    if(e.target===lightbox) lightbox.remove();
-  });
+  if (files.some(f => f.size === 0 || f.size > MAX_FILE_BYTES)) {
+    tampilkanPesan("Setiap file harus berukuran maksimal 5 MB.");
+    return;
+  }
 
-  lightbox.appendChild(fotoBesar);
-  lightbox.appendChild(tombolTutup);
-  document.body.appendChild(lightbox);
+  if (total > MAX_TOTAL_BYTES) {
+    tampilkanPesan("Total ukuran semua lampiran maksimal 20 MB.");
+    return;
+  }
+
+  const ekstensi = /\.(jpg|jpeg|png|mp4|doc|docx|pdf|xls|xlsx)$/i;
+
+  if (files.some(f => !ekstensi.test(f.name))) {
+    tampilkanPesan("Ada format file yang tidak didukung.");
+    return;
+  }
+
+  const tombol = uploadForm.querySelector('button[type="submit"]');
+  tombol.disabled = true;
+  tombol.textContent = "Mengunggah...";
+
+  try {
+    const lampiran = [];
+
+    for (const f of files) {
+      lampiran.push(await fileKeBase64(f));
+    }
+
+    const hasil = await panggilPost({
+      action: "upload",
+      judul,
+      keterangan,
+      petugas: "Petugas SBMDI",
+      kodeAkses,
+      tanggalKegiatan,
+      files: lampiran
+    });
+
+    uploadForm.reset();
+
+    fileNote.textContent =
+      "JPG, JPEG, PNG, MP4, DOC, DOCX, XLS, XLSX, PDF. Maksimal 5 MB per file, 20 file dan total 20 MB.";
+
+    uploadModal.classList.remove("show");
+
+    tampilkanPesan(
+      "Informasi berhasil diunggah (" +
+      hasil.jumlahFile +
+      " lampiran)." +
+      (hasil.notificationSent
+        ? " Notifikasi terkirim."
+        : " Notifikasi belum terkirim.")
+    );
+
+    await muatInformasi();
+
+  } catch (err) {
+    tampilkanPesan("Upload gagal: " + err.message);
+
+  } finally {
+    tombol.disabled = false;
+    tombol.textContent = "Upload Informasi";
+  }
 });
 
-kartu.appendChild(tautanFoto);
+/* MODE HAPUS */
+document.getElementById("deleteMenu").addEventListener("click", () => {
+  dropdownMenu.classList.remove("show");
+  modeHapus = true;
+  perbaruiModeHapus();
 
-  if(file.kategori==="video"){
- const pembungkusVideo=document.createElement("div");
- pembungkusVideo.className="video-preview-wrapper";
-
- const video=document.createElement("iframe");
- video.src="https://drive.google.com/file/d/"+encodeURIComponent(file.idDrive)+"/preview";
- video.title="Pratinjau video";
- video.allow="autoplay; fullscreen";
- video.allowFullscreen=true;
- video.setAttribute("allowfullscreen","");
-
- pembungkusVideo.appendChild(video);
- kartu.appendChild(pembungkusVideo);
-}
-
-  const top=document.createElement("div");top.className="file-card-top";
-  const ikon=document.createElement("div");ikon.className="file-type-icon "+file.kategori;ikon.textContent=file.ikon;
-  const info=document.createElement("div");info.className="file-info";const judul=document.createElement("h4");judul.textContent=file.nama;const jenis=document.createElement("small");jenis.textContent=file.jenis;info.append(judul,jenis);top.append(ikon,info);
-  const keterangan=document.createElement("p");keterangan.className="file-description";keterangan.textContent=file.judul+(file.keterangan?" — "+file.keterangan:"");
-  const tanggal=document.createElement("div");tanggal.className="file-date";tanggal.textContent=file.tanggal;
-  const link=document.createElement("a");
-
-if(file.idDrive){
-  link.href="https://drive.google.com/file/d/"+encodeURIComponent(file.idDrive)+"/view";
-}else{
-  link.href=file.url;
-}
-
-link.target="_blank";
-link.rel="noopener";
-link.textContent="Buka lampiran";
-link.style.cssText="display:inline-block;margin-top:10px;font-size:12px;color:#0756a5;text-decoration:none;";
-  kartu.append(checkbox,top,keterangan,tanggal,link);
-  checkbox.addEventListener("change",()=>{kartu.classList.toggle("selected",checkbox.checked);perbaruiJumlahPilihan();});
-  kartu.addEventListener("click",e=>{if(modeHapus&&e.target!==checkbox&&e.target!==link){checkbox.checked=!checkbox.checked;kartu.classList.toggle("selected",checkbox.checked);perbaruiJumlahPilihan();}});
-  fileGrid.appendChild(kartu);
- });perbaruiModeHapus(false);
-}
-searchInput.addEventListener("input",tampilkanFile);
-document.getElementById("uploadMenu").addEventListener("click",()=>{dropdownMenu.classList.remove("show");uploadModal.classList.add("show");});
-document.getElementById("closeUpload").addEventListener("click",()=>uploadModal.classList.remove("show"));
-uploadModal.addEventListener("click",e=>{if(e.target===uploadModal)uploadModal.classList.remove("show");});
-fileInput.addEventListener("change",()=>{const files=Array.from(fileInput.files||[]);fileNote.textContent=files.length+" file dipilih. Maksimal 5 MB per file dan total 20 MB.";});
-function fileKeBase64(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve({nama:file.name,mimeType:file.type,base64:String(reader.result).split(",")[1]});reader.onerror=()=>reject(new Error("Gagal membaca file "+file.name));reader.readAsDataURL(file);});}
-uploadForm.addEventListener("submit",async e=>{
- e.preventDefault();const judul=document.getElementById("activityName").value.trim();const keterangan=document.getElementById("description").value.trim();const tanggalKegiatan=document.getElementById("activityDate").value;const kodeAkses=document.getElementById("accessCode").value;const files=Array.from(fileInput.files||[]);
- if(!judul||!kodeAkses||!files.length){tampilkanPesan("Judul, kode akses, dan lampiran wajib diisi.");return;}
- if(files.length>MAX_FILES){tampilkanPesan("Maksimal 20 lampiran.");return;}
- const total=files.reduce((n,f)=>n+f.size,0);if(files.some(f=>f.size===0||f.size>MAX_FILE_BYTES)){tampilkanPesan("Setiap file harus berukuran maksimal 5 MB.");return;}
- if(total>MAX_TOTAL_BYTES){tampilkanPesan("Total ukuran semua lampiran maksimal 20 MB.");return;}
- const ekstensi=/\.(jpg|jpeg|png|mp4|doc|docx|pdf|xls|xlsx)$/i;if(files.some(f=>!ekstensi.test(f.name))){tampilkanPesan("Ada format file yang tidak didukung.");return;}
- const tombol=uploadForm.querySelector('button[type="submit"]');tombol.disabled=true;tombol.textContent="Mengunggah...";
- try{
-  const lampiran=[];for(const f of files)lampiran.push(await fileKeBase64(f));
-  const hasil=await panggilPost({action:"upload",judul,keterangan,petugas:"Petugas SBMDI",kodeAkses,tanggalKegiatan,files:lampiran});
-  uploadForm.reset();fileNote.textContent="JPG, JPEG, PNG, MP4, DOC, DOCX, PDF. Maksimal 5 MB per file, 20 file dan total 20 MB.";uploadModal.classList.remove("show");tampilkanPesan("Informasi berhasil diunggah ("+hasil.jumlahFile+" lampiran)."+(hasil.notificationSent?" Notifikasi terkirim.":" Notifikasi belum terkirim."));await muatInformasi();
- }catch(err){tampilkanPesan("Upload gagal: "+err.message);}finally{tombol.disabled=false;tombol.textContent="Upload Informasi";}
+  tampilkanPesan("Pilih lampiran dari informasi yang ingin dihapus.");
 });
-document.getElementById("deleteMenu").addEventListener("click",()=>{dropdownMenu.classList.remove("show");modeHapus=true;perbaruiModeHapus();tampilkanPesan("Pilih lampiran dari informasi yang ingin dihapus.");});
-function perbaruiModeHapus(reset=true){document.body.classList.toggle("delete-mode",modeHapus);deleteToolbar.classList.toggle("show",modeHapus);if(reset){document.querySelectorAll(".file-checkbox").forEach(c=>{c.checked=false;c.closest(".file-card")?.classList.remove("selected");});}perbaruiJumlahPilihan();}
-function perbaruiJumlahPilihan(){const ids=[...new Set([...document.querySelectorAll(".file-checkbox:checked")].map(c=>c.value))];selectedCount.textContent=ids.length+" informasi dipilih";}
-document.getElementById("cancelDelete").addEventListener("click",()=>{modeHapus=false;perbaruiModeHapus();});
-document.getElementById("deleteSelected").addEventListener("click",async()=>{
- const ids=[...new Set([...document.querySelectorAll(".file-checkbox:checked")].map(c=>c.value))];if(!ids.length){tampilkanPesan("Belum ada informasi yang dipilih.");return;}
- const kodeAkses=prompt("Masukkan kode akses petugas untuk menghapus informasi:");if(!kodeAkses)return;
- if(!confirm("Hapus "+ids.length+" paket informasi beserta seluruh lampirannya?"))return;
- const tombol=document.getElementById("deleteSelected");tombol.disabled=true;
- try{for(const idInformasi of ids)await panggilPost({action:"delete",idInformasi,kodeAkses});modeHapus=false;perbaruiModeHapus();tampilkanPesan("Informasi terpilih berhasil dihapus.");await muatInformasi();}
- catch(err){tampilkanPesan("Penghapusan gagal: "+err.message);}finally{tombol.disabled=false;}
+
+function perbaruiModeHapus(reset = true) {
+  document.body.classList.toggle("delete-mode", modeHapus);
+  deleteToolbar.classList.toggle("show", modeHapus);
+
+  if (reset) {
+    document.querySelectorAll(".file-checkbox").forEach(c => {
+      c.checked = false;
+      c.closest(".file-card")?.classList.remove("selected");
+    });
+  }
+
+  perbaruiJumlahPilihan();
+}
+
+function perbaruiJumlahPilihan() {
+  const ids = [
+    ...new Set(
+      [...document.querySelectorAll(".file-checkbox:checked")]
+        .map(c => c.value)
+    )
+  ];
+
+  selectedCount.textContent = ids.length + " informasi dipilih";
+}
+
+document.getElementById("cancelDelete").addEventListener("click", () => {
+  modeHapus = false;
+  perbaruiModeHapus();
 });
-// Mulai dengan kategori foto aktif dan ambil data dari server.
-document.querySelectorAll(".category-card").forEach(b=>b.classList.toggle("active",b.dataset.category==="foto"));
-tampilkanFile();muatInformasi();
+
+/* HAPUS INFORMASI TERPILIH */
+document.getElementById("deleteSelected").addEventListener("click", async () => {
+  const ids = [
+    ...new Set(
+      [...document.querySelectorAll(".file-checkbox:checked")]
+        .map(c => c.value)
+    )
+  ];
+
+  if (!ids.length) {
+    tampilkanPesan("Belum ada informasi yang dipilih.");
+    return;
+  }
+
+  const kodeAkses = prompt(
+    "Masukkan kode akses petugas untuk menghapus informasi:"
+  );
+
+  if (!kodeAkses) return;
+
+  if (!confirm(
+    "Hapus " + ids.length +
+    " paket informasi beserta seluruh lampirannya?"
+  )) return;
+
+  const tombol = document.getElementById("deleteSelected");
+  tombol.disabled = true;
+
+  try {
+    for (const idInformasi of ids) {
+      await panggilPost({
+        action: "delete",
+        idInformasi,
+        kodeAkses
+      });
+    }
+
+    modeHapus = false;
+    perbaruiModeHapus();
+
+    tampilkanPesan("Informasi terpilih berhasil dihapus.");
+    await muatInformasi();
+
+  } catch (err) {
+    tampilkanPesan("Penghapusan gagal: " + err.message);
+
+  } finally {
+    tombol.disabled = false;
+  }
+});
+
+/* MULAI DENGAN KATEGORI FOTO AKTIF */
+document.querySelectorAll(".category-card").forEach(b => {
+  b.classList.toggle("active", b.dataset.category === "foto");
+});
+
+tampilkanFile();
+muatInformasi();
+
 </script>
 </body>
 </html>
