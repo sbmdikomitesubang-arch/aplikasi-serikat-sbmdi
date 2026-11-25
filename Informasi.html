@@ -1662,7 +1662,11 @@ document.getElementById("cancelDelete").addEventListener("click", () => {
 });
 
 /* HAPUS INFORMASI TERPILIH */
-document.getElementById("deleteSelected").addEventListener("click", async () => {
+
+const deletePasswordModal = document.getElementById("deletePasswordModal");
+const deleteAccessCode = document.getElementById("deleteAccessCode");
+
+document.getElementById("deleteSelected").addEventListener("click", () => {
   const ids = [
     ...new Set(
       [...document.querySelectorAll(".file-checkbox:checked")]
@@ -1675,19 +1679,40 @@ document.getElementById("deleteSelected").addEventListener("click", async () => 
     return;
   }
 
- const kodeAkses = window.prompt(
-  "Masukkan kode akses petugas untuk menghapus informasi:"
-);
+  deleteAccessCode.value = "";
+  deletePasswordModal.classList.add("show");
+  deleteAccessCode.focus();
+});
 
-  if (!kodeAkses) return;
+document.getElementById("cancelDeletePassword").addEventListener("click", () => {
+  deletePasswordModal.classList.remove("show");
+  deleteAccessCode.value = "";
+});
+
+document.getElementById("confirmDeletePassword").addEventListener("click", async () => {
+  const kodeAkses = deleteAccessCode.value;
+
+  if (!kodeAkses) {
+    tampilkanPesan("Kode akses wajib diisi.");
+    deleteAccessCode.focus();
+    return;
+  }
+
+  const ids = [
+    ...new Set(
+      [...document.querySelectorAll(".file-checkbox:checked")]
+        .map(c => c.value)
+    )
+  ];
 
   if (!confirm(
     "Hapus " + ids.length +
     " paket informasi beserta seluruh lampirannya?"
   )) return;
 
-  const tombol = document.getElementById("deleteSelected");
+  const tombol = document.getElementById("confirmDeletePassword");
   tombol.disabled = true;
+  tombol.textContent = "Menghapus...";
 
   try {
     for (const idInformasi of ids) {
@@ -1697,6 +1722,9 @@ document.getElementById("deleteSelected").addEventListener("click", async () => 
         kodeAkses
       });
     }
+
+    deletePasswordModal.classList.remove("show");
+    deleteAccessCode.value = "";
 
     modeHapus = false;
     perbaruiModeHapus();
@@ -1709,9 +1737,9 @@ document.getElementById("deleteSelected").addEventListener("click", async () => 
 
   } finally {
     tombol.disabled = false;
+    tombol.textContent = "Lanjutkan";
   }
 });
-
 /* MULAI DENGAN KATEGORI FOTO AKTIF */
 document.querySelectorAll(".category-card").forEach(b => {
   b.classList.toggle("active", b.dataset.category === "foto");
