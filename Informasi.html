@@ -1467,8 +1467,36 @@ function tampilkanFile(){
     tautanFoto.appendChild(pesan);
    };
    tautanFoto.appendChild(gambar);
-   kartu.appendChild(tautanFoto);
-  }
+
+tautanFoto.addEventListener("click", function(e){
+  e.preventDefault();
+
+  const lightbox=document.createElement("div");
+  lightbox.style.cssText="position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;padding:12px;";
+
+  const fotoBesar=document.createElement("img");
+  fotoBesar.src=gambar.src;
+  fotoBesar.alt=gambar.alt;
+  fotoBesar.style.cssText="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;";
+
+  const tombolTutup=document.createElement("button");
+  tombolTutup.textContent="✕";
+  tombolTutup.style.cssText="position:absolute;top:15px;right:15px;width:42px;height:42px;border:0;border-radius:50%;background:#fff;color:#111;font-size:24px;";
+
+  tombolTutup.addEventListener("click",function(){
+    lightbox.remove();
+  });
+
+  lightbox.addEventListener("click",function(e){
+    if(e.target===lightbox) lightbox.remove();
+  });
+
+  lightbox.appendChild(fotoBesar);
+  lightbox.appendChild(tombolTutup);
+  document.body.appendChild(lightbox);
+});
+
+kartu.appendChild(tautanFoto);
 
   if(file.kategori==="video"){
  const pembungkusVideo=document.createElement("div");
