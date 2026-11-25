@@ -1688,6 +1688,12 @@ document.getElementById("cancelDelete").addEventListener("click", () => {
 const deletePasswordModal = document.getElementById("deletePasswordModal");
 const deleteAccessCode = document.getElementById("deleteAccessCode");
 
+const deleteConfirmModal = document.getElementById("deleteConfirmModal");
+const deleteConfirmText = document.getElementById("deleteConfirmText");
+
+let idsMenungguHapus = [];
+let kodeAksesMenungguHapus = "";
+
 document.getElementById("deleteSelected").addEventListener("click", () => {
   const ids = [
     ...new Set(
@@ -1711,7 +1717,7 @@ document.getElementById("cancelDeletePassword").addEventListener("click", () => 
   deleteAccessCode.value = "";
 });
 
-document.getElementById("confirmDeletePassword").addEventListener("click", async () => {
+document.getElementById("confirmDeletePassword").addEventListener("click", () => {
   const kodeAkses = deleteAccessCode.value;
 
   if (!kodeAkses) {
@@ -1720,32 +1726,56 @@ document.getElementById("confirmDeletePassword").addEventListener("click", async
     return;
   }
 
-  const ids = [
+  idsMenungguHapus = [
     ...new Set(
       [...document.querySelectorAll(".file-checkbox:checked")]
         .map(c => c.value)
     )
   ];
 
- if (!window.confirm(
-  "Hapus " + ids.length +
-  " paket informasi beserta seluruh lampirannya?"
-)) return;
-  const tombol = document.getElementById("confirmDeletePassword");
+  if (!idsMenungguHapus.length) {
+    tampilkanPesan("Belum ada informasi yang dipilih.");
+    return;
+  }
+
+  kodeAksesMenungguHapus = kodeAkses;
+
+  deletePasswordModal.classList.remove("show");
+
+  deleteConfirmText.textContent =
+    "Hapus " + idsMenungguHapus.length +
+    " paket informasi beserta seluruh lampirannya?";
+
+  deleteConfirmModal.classList.add("show");
+});
+
+document.getElementById("cancelDeleteAction").addEventListener("click", () => {
+  deleteConfirmModal.classList.remove("show");
+  deleteAccessCode.value = "";
+  kodeAksesMenungguHapus = "";
+  idsMenungguHapus = [];
+});
+
+document.getElementById("confirmDeleteAction").addEventListener("click", async () => {
+  const tombol = document.getElementById("confirmDeleteAction");
+
   tombol.disabled = true;
   tombol.textContent = "Menghapus...";
 
   try {
-    for (const idInformasi of ids) {
+    for (const idInformasi of idsMenungguHapus) {
       await panggilPost({
         action: "delete",
         idInformasi,
-        kodeAkses
+        kodeAkses: kodeAksesMenungguHapus
       });
     }
 
-    deletePasswordModal.classList.remove("show");
+    deleteConfirmModal.classList.remove("show");
     deleteAccessCode.value = "";
+
+    kodeAksesMenungguHapus = "";
+    idsMenungguHapus = [];
 
     modeHapus = false;
     perbaruiModeHapus();
@@ -1754,11 +1784,12 @@ document.getElementById("confirmDeletePassword").addEventListener("click", async
     await muatInformasi();
 
   } catch (err) {
+    deleteConfirmModal.classList.remove("show");
     tampilkanPesan("Penghapusan gagal: " + err.message);
 
   } finally {
     tombol.disabled = false;
-    tombol.textContent = "Lanjutkan";
+    tombol.textContent = "Ya, Hapus";
   }
 });
 /* MULAI DENGAN KATEGORI FOTO AKTIF */
