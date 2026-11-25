@@ -1090,6 +1090,28 @@ body {
   </div>
 </div>
 
+  <!-- MODAL KONFIRMASI PENGHAPUSAN -->
+<div class="modal-overlay" id="deleteConfirmModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <h3>Konfirmasi Penghapusan</h3>
+        <p id="deleteConfirmText">
+          Apakah informasi ini akan dihapus?
+        </p>
+      </div>
+    </div>
+
+    <button type="button" class="primary-button" id="confirmDeleteAction">
+      Ya, Hapus
+    </button>
+
+    <button type="button" class="cancel-button" id="cancelDeleteAction">
+      Batal
+    </button>
+  </div>
+</div>
+
 <!-- PESAN NOTIFIKASI -->
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -1705,11 +1727,10 @@ document.getElementById("confirmDeletePassword").addEventListener("click", async
     )
   ];
 
-  if (!confirm(
-    "Hapus " + ids.length +
-    " paket informasi beserta seluruh lampirannya?"
-  )) return;
-
+ if (!window.confirm(
+  "Hapus " + ids.length +
+  " paket informasi beserta seluruh lampirannya?"
+)) return;
   const tombol = document.getElementById("confirmDeletePassword");
   tombol.disabled = true;
   tombol.textContent = "Menghapus...";
