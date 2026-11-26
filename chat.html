@@ -516,12 +516,10 @@
   }
 
   
-/* KIRIM PESAN KE SERVER SAKA */
 
-const URL_SAKA =
-  "https://script.google.com/macros/s/AKfycbz2zbiKya7PtScOaN81upgqNq8Xy2lK7AGpnzPN9EncZjjCnoM-8C8fHS_wuovFGCAtw/exec";
+/* KIRIM PESAN KE SERVER SAKA - JSONP */
 
-async function kirimPesan() {
+function kirimPesan() {
 
   const pertanyaan = input.value.trim();
 
@@ -539,45 +537,77 @@ async function kirimPesan() {
   const tombolKirim = document.getElementById("sendButton");
   tombolKirim.disabled = true;
 
-  const pesanLoading = tambahPesan("SAKA sedang berpikir...", "bot");
+  const pesanLoading = tambahPesan(
+    "SAKA sedang berpikir...", "bot"
+  );
 
-  try {
+  const callbackName =
+    "sakaCallback_" + Date.now();
 
-    const response = await fetch(URL_SAKA, {
-      method: "POST",
-      headers: {
-        "Content-Type": "text/plain;charset=utf-8"
-      },
-      body: JSON.stringify({
-        message: pertanyaan
-      })
-    });
+  const script = document.createElement("script");
 
-    const hasil = await response.json();
+  const timeout = setTimeout(function() {
 
-    pesanLoading.remove();
-
-    if (!hasil.success) {
-      throw new Error(hasil.error || "SAKA gagal memberikan jawaban.");
-    }
-
-    tambahPesan(hasil.answer, "bot");
-
-  } catch (error) {
+    bersihkan();
 
     pesanLoading.remove();
 
     tambahPesan(
-      "Maaf, SAKA sedang mengalami gangguan. Silakan coba kembali.\n\nDetail: " + error.message,
+      "Maaf, waktu tunggu SAKA terlalu lama. Silakan coba kembali.",
       "bot"
     );
 
-  } finally {
+    selesai();
 
+  }, 90000);
+
+  function bersihkan() {
+    clearTimeout(timeout);
+    script.remove();
+    delete window[callbackName];
+  }
+
+  function selesai() {
     sedangMemproses = false;
     tombolKirim.disabled = false;
-
   }
+
+  window[callbackName] = function(hasil) {
+
+    bersihkan();
+    pesanLoading.remove();
+
+    if (hasil.success) {
+      tambahPesan(hasil.answer, "bot");
+    } else {
+      tambahPesan(
+        "SAKA mengalami gangguan: " + hasil.error,
+        "bot"
+      );
+    }
+
+    selesai();
+  };
+
+  script.onerror = function() {
+
+    bersihkan();
+    pesanLoading.remove();
+
+    tambahPesan(
+      "SAKA tidak dapat dihubungi. Silakan coba kembali.",
+      "bot"
+    );
+
+    selesai();
+  };
+
+  script.src =
+    URL_SAKA +
+    "?callback=" + encodeURIComponent(callbackName) +
+    "&message=" + encodeURIComponent(pertanyaan);
+
+  document.body.appendChild(script);
 }
 
   /* MIKROFON */
