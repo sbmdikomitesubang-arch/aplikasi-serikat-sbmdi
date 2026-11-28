@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dokumen SBMDI</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #4682B4 10%, #ffffff 90%);
+      min-height: 100vh;
+    }
+
+    img {
+      display: block;
+      width: 80px;
+      height: 60px;
+      margin: 0 auto 0.5rem;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    /* ===== HALAMAN DAFTAR DOKUMEN ===== */
+
+    #halaman-dokumen {
+      display: none;
+      padding: 15px;
+    }
+
+    .daftar-file {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .file-item {
+      width: calc(33.333% - 2rem);
+      min-width: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+      text-decoration: none;
+    }
+
+    .file-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .ikon-folder {
+      width: 60px;
+      height: auto;
+      margin-bottom: 0.6rem;
+    }
+
+    .nama-file {
+      font-size: 0.95rem;
+      color: #333;
+      text-align: center;
+    }
+
+    .kembali {
+      color: black;
+      text-decoration: none;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ===== OVERLAY UMUM ===== */
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 200;
+    }
+
+    .overlay.aktif {
+      display: flex;
+    }
+
+    /* ===== DIALOG PEMBUKA DOKUMEN ===== */
+
+    .kotak-pembuka {
+      background: linear-gradient(180deg, #ffffff, #e3f1ff);
+      padding: 25px;
+      border-radius: 16px;
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+    }
+
+    .ikon-pembuka {
+      width: 65px;
+      height: 65px;
+      margin: 0 auto 15px;
+      border-radius: 18px;
+      background: #dceaff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 35px;
+    }
+
+    .kotak-pembuka h2 {
+      color: #163c72;
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .deskripsi-pembuka {
+      color: #334b6b;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .informasi-anggota {
+      background: #ffffff;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: left;
+      margin-bottom: 22px;
+    }
+
+    .informasi-anggota h3 {
+      color: #2563b8;
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .informasi-anggota p {
+      color: #475569;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .tombol-buka {
+      display: block;
+      width: 100%;
+      padding: 13px;
+      background: #2463c5;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .tombol-buka:hover {
+      background: #164a9b;
+    }
+
+    /* ===== DIALOG DETAIL UNDUHAN ===== */
+
+    .kotak-detail {
+      background: linear-gradient(180deg, #ffffff, #0099cc);
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .ikon-kertas {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    .kotak-detail h3 {
+      color: #333;
+      margin-bottom: 1.5rem;
+      overflow-wrap: anywhere;
+    }
+
+    .tombol-unduh {
+      display: inline-block;
+      background-color: #008000;
+      color: white;
+      padding: 0.6rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      margin-bottom: 0.8rem;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+
+    .tombol-unduh:hover {
+      background-color: #2e8b57;
+    }
+
+    .tombol-tutup {
+      display: inline-block;
+      background-color: #000080;
+      border-radius: 6px;
+      margin-top: 1rem;
+      color: #ffffff;
+      padding: 0.6rem 1.5rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      border: none;
+      width: 120px;
+      font-size: 16px;
+    }
+
+    .tombol-tutup:hover {
+      background-color: #0000cd;
+    }
+
+    @media(max-width: 600px) {
+      .file-item {
+        width: calc(50% - 2rem);
+      }
+
+      .kotak-pembuka {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  
+<!-- ===== HALAMAN DAFTAR DOKUMEN ===== -->
+
+<div id="halaman-dokumen">
+
+  <header>
+    <img src="gambar/folder1.png" alt="Dokumen">
+    <h1>Dokumen (PDF)</h1>
+  </header>
+
+  <div class="daftar-file">
+
+    <a href="index.html" class="kembali">
+      <img src="gambar/folder 3.png" alt="Kembali">
+      Kembali ke Beranda
+    </a>
+
+    <!-- Folder 1 -->
+    <div class="file-item"
+      data-file="https://sbmdikomitesubang-arch.github.io/aplikasi-serikat-sbmdi/file%20pdf/Form%20HCP%20BPJS%20Reimbursement%20Generali.pdf"
+      data-nama="Form Reimbursement Generali">
+      <img src="gambar/folder1.png" alt="Folder" class="ikon-folder">
+      <span class="nama-file">Form Reimbursement Generali</span>
+    </div>
+
+    <!-- Folder 2 -->
+    <div class="file-item"
+      data-file="https://sbmdikomitesubang-arch.github.io/aplikasi-serikat-sbmdi/file%20pdf/Form%20Kacamata.pdf"
+      data-nama="Form Kacamata">
+      <img src="gambar/folder1.png" alt="Folder" class="ikon-folder">
+      <span class="nama-file">Form Kacamata</span>
+    </div>
+
+    <!-- Folder 3 -->
+    <div class="file-item"
+      data-file="https://sbmdikomitesubang-arch.github.io/aplikasi-serikat-sbmdi/file%20pdf/Form%20Teman%20Sejawat.pdf"
+      data-nama="Teman Sejawat">
+      <img src="gambar/folder1.png" alt="Folder" class="ikon-folder">
+      <span class="nama-file">Teman Sejawat</span>
+    </div>
+
+    <!-- Folder 4 -->
+    <div class="file-item"
+      data-file="https://sbmdikomitesubang-arch.github.io/aplikasi-serikat-sbmdi/file%20pdf/Reimbursement%20Form.pdf"
+      data-nama="Reimbursement Generali">
+      <img src="gambar/folder1.png" alt="Folder" class="ikon-folder">
+      <span class="nama-file">Reimbursement Generali</span>
+    </div>
+
+    <!-- Folder 5 -->
+    <div class="file-item"
+      data-file="https://sbmdikomitesubang-arch.github.io/aplikasi-serikat-sbmdi/file%20pdf/Surat%20Pernyataan%20Kacamata.pdf"
+      data-nama="Surat Pernyataan Kacamata">
+      <img src="gambar/folder1.png" alt="Folder" class="ikon-folder">
+      <span class="nama-file">Surat Pernyataan Kacamata</span>
+    </div>
+
+    <!-- Folder 6 -->
+    <div class="file-item"
+      data-file="https://sbmdikomitesubang-arch.github.io/aplikasi-serikat-sbmdi/file%20pdf/Coretax%20(002).pdf"
+      data-nama="Coretax (002)">
+      <img src="gambar/folder1.png" alt="Folder" class="ikon-folder">
+      <span class="nama-file">Coretax (002)</span>
+    </div>
+
+    <!-- Folder 7 -->
+    <div class="file-item"
+      data-file="https://sbmdikomitesubang-arch.github.io/aplikasi-serikat-sbmdi/file%20pdf/Danone-IUF%20agreements%201988-2024.pdf"
+      data-nama="Danone-IUF Agreements 1988-2024">
+      <img src="gambar/folder1.png" alt="Folder" class="ikon-folder">
+      <span class="nama-file">Danone-IUF Agreements 1988-2024</span>
+    </div>
+
+    <!-- Tambah dokumen baru di sini -->
+
+  </div>
+</div>
+
+  <!-- ===== DIALOG PEMBUKA DOKUMEN ===== -->
+
+  <div class="overlay aktif" id="overlay-pembuka">
+
+    <div class="kotak-pembuka">
+
+      <div class="ikon-pembuka">📁</div>
+
+      <h2>DOKUMEN SBMDI</h2>
+
+      <p class="deskripsi-pembuka">
+        Halaman ini menyediakan berbagai dokumen organisasi
+        yang dapat diakses dan diunduh oleh anggota sesuai kebutuhan.
+      </p>
+
+      <div class="informasi-anggota">
+        <h3>ⓘ Informasi untuk Anggota</h3>
+
+        <p>
+          Silakan pilih dan buka folder dokumen untuk menemukan
+          file yang Anda perlukan. Pastikan dokumen yang diunduh
+          sesuai dengan kebutuhan Anda.
+        </p>
+      </div>
+
+      <button type="button" class="tombol-buka" id="tombol-buka">
+        BUKA DAFTAR DOKUMEN
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ===== DIALOG DETAIL UNDUHAN ===== -->
+
+  <div class="overlay" id="overlay-detail">
+
+    <div class="kotak-detail">
+
+      <div class="ikon-kertas">📝</div>
+
+      <h3 id="judul-detail">Nama File</h3>
+
+      <a href="#" id="link-unduh" download class="tombol-unduh">
+        Unduh Dokumen
+      </a>
+
+      <br>
+
+      <button type="button" class="tombol-tutup" id="tombol-tutup">
+        Cancel
+      </button>
+
+    </div>
+  </div>
+
+  <script>
+
+    // ===== AMBIL ELEMEN =====
+
+    const halamanDokumen = document.getElementById('halaman-dokumen');
+
+    const overlayPembuka = document.getElementById('overlay-pembuka');
+
+    const tombolBuka = document.getElementById('tombol-buka');
+
+    const semuaFolder = document.querySelectorAll('.file-item');
+
+    const overlayDetail = document.getElementById('overlay-detail');
+
+    const judulDetail = document.getElementById('judul-detail');
+
+    const linkUnduh = document.getElementById('link-unduh');
+
+    const tombolTutup = document.getElementById('tombol-tutup');
+
+
+    // ===== TOMBOL BUKA DAFTAR DOKUMEN =====
+
+    tombolBuka.addEventListener('click', function() {
+
+      overlayPembuka.classList.remove('aktif');
+
+      halamanDokumen.style.display = 'block';
+
+    });
+
+
+    // ===== KLIK FOLDER =====
+
+    semuaFolder.forEach(function(folder) {
+
+      folder.addEventListener('click', function() {
+
+        const nama = this.getAttribute('data-nama');
+
+        const file = this.getAttribute('data-file');
+
+        judulDetail.textContent = nama;
+
+        // Menyiapkan alamat file untuk diunduh
+        linkUnduh.href = encodeURI(file);
+
+        overlayDetail.classList.add('aktif');
+
+      });
+
+    });
+
+
+    // ===== TOMBOL CANCEL =====
+
+    tombolTutup.addEventListener('click', function(e) {
+
+      e.preventDefault();
+
+      overlayDetail.classList.remove('aktif');
+
+      linkUnduh.href = '#';
+
+    });
+
+
+    // ===== KLIK DI LUAR KOTAK DETAIL =====
+
+    overlayDetail.addEventListener('click', function(e) {
+
+      if (e.target === overlayDetail) {
+
+        overlayDetail.classList.remove('aktif');
+
+        linkUnduh.href = '#';
+
+      }
+
+    });
+
+
+    // ===== TOMBOL ESCAPE =====
+
+    document.addEventListener('keydown', function(e) {
+
+      if (e.key === 'Escape') {
+
+        overlayDetail.classList.remove('aktif');
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
