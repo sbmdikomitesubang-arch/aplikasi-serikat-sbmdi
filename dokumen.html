@@ -423,11 +423,12 @@
 
         judulDetail.textContent = nama;
 
-        // Menyiapkan alamat file untuk diunduh
-        linkUnduh.href = encodeURI(file);
+       // Menyiapkan alamat dan nama file untuk diunduh
+linkUnduh.href = file;
+linkUnduh.setAttribute('download', decodeURIComponent(file.split('/').pop()));
 
-        overlayDetail.classList.add('aktif');
-
+overlayDetail.classList.add('aktif');
+        
       });
 
     });
